@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GNO 遊戲產業競爭情報看板</title>
+<title>VNG 遊戲產業競爭情報看板</title>
 <style>
   :root {
     --bg: #f8fafc;
@@ -102,6 +102,48 @@
   .s-green { color: var(--green); }
   .s-blue { color: var(--accent); }
   .s-purple { color: var(--purple); }
+
+  /* CHIP NAV */
+  .chip-nav {
+    position: sticky;
+    top: 73px;   /* below the header */
+    z-index: 90;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    margin: 0 auto 20px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    background: var(--bg2);
+    color: var(--text2);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .chip.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.25);
+  }
+  .chip.chip-all.active { background: #1e293b; border-color: #1e293b; }
+  .section { transition: opacity 0.2s; }
+  .section.hidden { display: none; }
 
   /* SECTION */
   .section {
@@ -460,8 +502,17 @@
     </div>
   </div>
 
+  <!-- CHIP NAV -->
+  <div class="chip-nav" id="chipNav">
+    <button class="chip chip-all active" onclick="filterSec('all')">📋 全部顯示</button>
+    <button class="chip" onclick="filterSec('alert')">🚨 緊急預警</button>
+    <button class="chip" onclick="filterSec('timeline')">📅 開測時程</button>
+    <button class="chip" onclick="filterSec('newgames')">🎯 新遊上線</button>
+    <button class="chip" onclick="filterSec('industry')">🏢 產業趨勢</button>
+  </div>
+
   <!-- ALERT -->
-  <div class="section">
+  <div class="section" data-sec="alert">
     <div class="section-header">
       <div class="section-icon si-red">🚨</div>
       <div class="section-title">本週緊急預警</div>
@@ -484,7 +535,7 @@
   </div>
 
   <!-- SECTION 2: TEST SCHEDULE TIMELINE -->
-  <div class="section">
+  <div class="section" data-sec="timeline">
     <div class="section-header">
       <div class="section-icon si-orange">📅</div>
       <div class="section-title">開測時程表（Timeline View）</div>
@@ -923,7 +974,7 @@
   </div>
 
   <!-- SECTION 3: NEW GAMES -->
-  <div class="section">
+  <div class="section" data-sec="newgames">
     <div class="section-header">
       <div class="section-icon si-blue">🎯</div>
       <div class="section-title">新遊上線與預約動態</div>
@@ -954,97 +1005,4 @@
           </tr>
           <tr>
             <td><strong>魔物獵人：旅人</strong></td>
-            <td>CAPCOM IP / 騰訊天美開發</td>
-            <td><span class="type-badge type-green">封測CBT2</span></td>
-            <td>iOS/Android</td>
-            <td>2026-04-29啟程測試</td>
-            <td><span style="color:var(--text2);font-size:11px">Saiganak</span></td>
-            <td><div class="pm-note-cell">知名IP×騰訊品質，正式公測前需持續監控</div></td>
-          </tr>
-          <tr>
-            <td><strong>明日方舟：終末地</strong></td>
-            <td>鷹角網絡</td>
-            <td><span class="type-badge type-red">公測已上線</span></td>
-            <td>iOS/Android/PC/PS5</td>
-            <td>2026-01-22（5月持續活動）</td>
-            <td><span style="color:var(--text2);font-size:11px">巴哈GNN</span></td>
-            <td><div class="pm-note-cell">⚠️ 預約3500萬，策略+ARPG，5月仍有限時活動維持熱度</div></td>
-          </tr>
-          <tr>
-            <td><strong>七大罪：Origin</strong></td>
-            <td>網石（Netmarble）</td>
-            <td><span class="type-badge type-red">公測已上線</span></td>
-            <td>iOS/Android/PC/PS5</td>
-            <td>2026-03-24</td>
-            <td><span style="color:var(--text2);font-size:11px">巴哈GNN</span></td>
-            <td><div class="pm-note-cell">知名IP×UE5×開放世界，三月上線仍持續吸收玩家</div></td>
-          </tr>
-          <tr>
-            <td><strong>星布谷地</strong></td>
-            <td>米哈遊（HoYoverse）</td>
-            <td><span class="type-badge type-green">封測進行中</span></td>
-            <td>iOS/Android/PC</td>
-            <td>2026-04-21 星旅測試</td>
-            <td><span style="color:var(--text2);font-size:11px">Saiganak</span></td>
-            <td><div class="pm-note-cell">⚠️ 米哈遊品牌首款生活模擬，公測時機需追蹤，間接影響玩家時間</div></td>
-          </tr>
-          <tr>
-            <td><strong>無職轉生：迴響編年史</strong></td>
-            <td>GREE Entertainment</td>
-            <td><span class="type-badge type-blue">預約中（10萬+）</span></td>
-            <td>iOS/Android/PC</td>
-            <td>2026年內預計上線</td>
-            <td><span style="color:var(--text2);font-size:11px">QooApp</span></td>
-            <td><div class="pm-note-cell">熱門動漫IP×二次元ARPG，配合7月動畫播出，需關注正式時程</div></td>
-          </tr>
-          <tr>
-            <td><strong>寶可夢冠軍</strong></td>
-            <td>The Pokémon Company</td>
-            <td><span class="type-badge type-blue">手機版夏季預定</span></td>
-            <td>Switch已上線 / 手機夏季</td>
-            <td>2026年夏季</td>
-            <td><span style="color:var(--text2);font-size:11px">巴哈GNN</span></td>
-            <td><div class="pm-note-cell">全球最大IP之一，稀釋手遊市場整體時間，直接競爭較低</div></td>
-          </tr>
-          <tr>
-            <td><strong>代號：神不言</strong></td>
-            <td>祖龍娛樂 VVANNA</td>
-            <td><span class="type-badge type-blue">事前預約中</span></td>
-            <td>iOS/Android/PC</td>
-            <td>2026-04-28曝光</td>
-            <td><span style="color:var(--text2);font-size:11px">巴哈GNN</span></td>
-            <td><div class="pm-note-cell">女性向戀愛互動，UE5高品質，目標受眾差異大，威脅低</div></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- SECTION 4: INDUSTRY NEWS -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon si-purple">🏢</div>
-      <div class="section-title">公司計畫與產業趨勢</div>
-      <span class="section-badge badge-blue">Agent 3 資料</span>
-    </div>
-    <div class="news-grid">
-
-      <div class="news-card">
-        <div class="news-card-header">
-          <div class="news-card-title">騰訊 Q1 2026 財報：營收 1964.6 億元，同比 +9%，國際遊戲增速超越本土</div>
-          <span class="news-cat cat-财报">財報</span>
-        </div>
-        <div class="news-summary">國際市場遊戲收入 188 億，同比 +13%；本土 454 億，+6%。多款遊戲流水創歷史新高，AI整合成新增長引擎，廣告業務 +20%。</div>
-        <div class="news-pm">【PM 觀點】騰訊國際化收入增速遠超本土，出海策略進入收穫期。AI能力若導入遊戲內容生成，將擴大競品競爭壓力。</div>
-        <div class="news-meta">
-          <span class="news-source">📰 新浪財經</span>
-          <span class="news-date">2026-05-13</span>
-        </div>
-      </div>
-
-      <div class="news-card">
-        <div class="news-card-header">
-          <div class="news-card-title">米哈遊新作《雨霧之都》商標進入實質審查，UE5+AI 動態劇情，2026 首測可期</div>
-          <span class="news-cat cat-新专案">新專案</span>
-        </div>
-        <div class="news-summary">米哈遊旗下子公司申請逾20�
+            <td>CAPCOM IP / 騰訊天美開�
