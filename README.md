@@ -1,1 +1,1 @@
-# Game-Weekly-Insight
+# Game-Daily-Insight
