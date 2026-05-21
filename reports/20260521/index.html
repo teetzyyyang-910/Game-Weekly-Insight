@@ -287,6 +287,13 @@
   .threat-medium { color: var(--orange); font-weight: 600; font-size: 12px; }
   .threat-low    { color: var(--green);  font-weight: 600; font-size: 12px; }
 
+
+  /* MARKET BADGES */
+  .mkt { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; margin-left: 5px; vertical-align: middle; white-space: nowrap; }
+  .mkt-cn     { background: rgba(220,38,38,0.09);  color: #b91c1c; border: 1px solid rgba(220,38,38,0.28); }
+  .mkt-global { background: rgba(22,163,74,0.09);  color: #15803d; border: 1px solid rgba(22,163,74,0.28); }
+  .mkt-tw     { background: rgba(37,99,235,0.09);  color: #1d4ed8; border: 1px solid rgba(37,99,235,0.28); }
+
   /* GANTT BAR */
   .gantt-cell { min-width: 280px; }
   .gantt-bar-wrap {
@@ -575,7 +582,7 @@
         <tbody>
           <!-- 異環 -->
           <tr>
-            <td><strong>異環</strong><br><span style="font-size:11px;color:var(--text2)">完美世界 幻塔工作室</span></td>
+            <td><strong>異環</strong><span class="mkt mkt-global">🌏 全球</span><br><span style="font-size:11px;color:var(--text2)">完美世界 幻塔工作室</span></td>
             <td>全平台公測</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>iOS/Android<br>PC/PS5/Mac</td>
@@ -591,7 +598,7 @@
           </tr>
           <!-- 鳴潮 -->
           <tr>
-            <td><strong>鳴潮</strong><br><span style="font-size:11px;color:var(--text2)">庫洛遊戲</span></td>
+            <td><strong>鳴潮</strong><span class="mkt mkt-global">🌏 全球</span><br><span style="font-size:11px;color:var(--text2)">庫洛遊戲</span></td>
             <td>3.3版本二週年慶典</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>iOS/Android/PC</td>
@@ -607,7 +614,7 @@
           </tr>
           <!-- 王者榮耀世界 -->
           <tr>
-            <td><strong>王者榮耀世界</strong><br><span style="font-size:11px;color:var(--text2)">騰訊 TiMi</span></td>
+            <td><strong>王者榮耀世界</strong><span class="mkt mkt-global">🌏 全球</span><br><span style="font-size:11px;color:var(--text2)">騰訊 TiMi</span></td>
             <td>PC端首輪大規模限號測試</td>
             <td><span class="type-badge type-green">刪檔不計費</span></td>
             <td>PC（後續雙端）</td>
@@ -623,7 +630,7 @@
           </tr>
           <!-- 失控進化（鴻蒙版） -->
           <tr>
-            <td><strong>失控進化</strong><br><span style="font-size:11px;color:var(--text2)">騰訊（鴻蒙版）</span></td>
+            <td><strong>失控進化</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">騰訊（鴻蒙版）</span></td>
             <td>鴻蒙版技術測試</td>
             <td><span class="type-badge type-green">刪檔不計費</span></td>
             <td>Android（鴻蒙）</td>
@@ -639,7 +646,7 @@
           </tr>
           <!-- 明日方舟：終末地 -->
           <tr>
-            <td><strong>明日方舟：終末地</strong><br><span style="font-size:11px;color:var(--text2)">鷹角網絡</span></td>
+            <td><strong>明日方舟：終末地</strong><span class="mkt mkt-global">🌏 全球</span><br><span style="font-size:11px;color:var(--text2)">鷹角網絡</span></td>
             <td>全球公測（持續運營）</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>iOS/Android/PC/PS5</td>
@@ -655,7 +662,7 @@
           </tr>
           <!-- 鎭明閃擊 -->
           <tr>
-            <td><strong>鎭明閃擊</strong><br><span style="font-size:11px;color:var(--text2)">朝夕光年</span></td>
+            <td><strong>鎭明閃擊</strong><span class="mkt mkt-global">🌏 全球</span><br><span style="font-size:11px;color:var(--text2)">朝夕光年</span></td>
             <td>公測正式上線</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>iOS/Android/PC</td>
@@ -671,7 +678,7 @@
           </tr>
           <!-- 遺忘之海 -->
           <tr>
-            <td><strong>遺忘之海</strong><br><span style="font-size:11px;color:var(--text2)">網易</span></td>
+            <td><strong>遺忘之海</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">網易</span></td>
             <td>破曉號測試（三測）</td>
             <td><span class="type-badge type-green">刪檔不計費</span></td>
             <td>iOS/Android</td>
@@ -687,7 +694,7 @@
           </tr>
           <!-- 卡厄思夢境 -->
           <tr>
-            <td><strong>卡厄思夢境</strong><br><span style="font-size:11px;color:var(--text2)">Smilegate / 騰訊代理</span></td>
+            <td><strong>卡厄思夢境</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">Smilegate / 騰訊代理</span></td>
             <td>國服公測</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>iOS/Android</td>
@@ -703,7 +710,7 @@
           </tr>
           <!-- 失控進化（全平台正式） -->
           <tr>
-            <td><strong>失控進化（全平台）</strong><br><span style="font-size:11px;color:var(--text2)">騰訊</span></td>
+            <td><strong>失控進化（全平台）</strong><span class="mkt mkt-global">🌏 全球</span><br><span style="font-size:11px;color:var(--text2)">騰訊</span></td>
             <td>全平台正式上線</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>PC/iOS/Android/鴻蒙</td>
@@ -719,7 +726,7 @@
           </tr>
           <!-- 無限大 -->
           <tr>
-            <td><strong>無限大（Project Mugen）</strong><br><span style="font-size:11px;color:var(--text2)">網易</span></td>
+            <td><strong>無限大（Project Mugen）</strong><span class="mkt mkt-global">🌏 全球</span><br><span style="font-size:11px;color:var(--text2)">網易</span></td>
             <td>全平台公測</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>iOS/Android</td>
@@ -735,7 +742,7 @@
           </tr>
           <!-- 東離劍遊紀M -->
           <tr>
-            <td><strong>東離劍遊紀M</strong><br><span style="font-size:11px;color:var(--text2)">霹靂IP</span></td>
+            <td><strong>東離劍遊紀M</strong><span class="mkt mkt-tw">🇹🇼 台港澳</span><br><span style="font-size:11px;color:var(--text2)">霹靂IP</span></td>
             <td>公測正式上線</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>iOS/Android</td>
@@ -759,7 +766,7 @@
 
           <!-- 仙逆：戰天道 -->
           <tr>
-            <td><strong>仙逆：戰天道</strong><br><span style="font-size:11px;color:var(--text2)">正版授權肉鴿塔防</span></td>
+            <td><strong>仙逆：戰天道</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">正版授權肉鴿塔防</span></td>
             <td>刪檔內測</td>
             <td><span class="type-badge type-green">刪檔不計費</span></td>
             <td>Android</td>
@@ -776,7 +783,7 @@
 
           <!-- 疊入深淵 -->
           <tr>
-            <td><strong>疊入深淵</strong><br><span style="font-size:11px;color:var(--text2)">克蘇魯風卡牌（胆小慎入）</span></td>
+            <td><strong>疊入深淵</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">克蘇魯風卡牌（胆小慎入）</span></td>
             <td>刪檔內測</td>
             <td><span class="type-badge type-green">刪檔不計費</span></td>
             <td>Android</td>
@@ -793,7 +800,7 @@
 
           <!-- 無畏騎士 -->
           <tr>
-            <td><strong>無畏騎士</strong><br><span style="font-size:11px;color:var(--text2)">軒轅劍聯動·角色扮演</span></td>
+            <td><strong>無畏騎士</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">軒轅劍聯動·角色扮演</span></td>
             <td>刪檔內測</td>
             <td><span class="type-badge type-green">刪檔不計費</span></td>
             <td>Android</td>
@@ -810,7 +817,7 @@
 
           <!-- 心跳陷落 -->
           <tr>
-            <td><strong>心跳陷落</strong><br><span style="font-size:11px;color:var(--text2)">全新角色扮演</span></td>
+            <td><strong>心跳陷落</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">全新角色扮演</span></td>
             <td>公測</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>Android</td>
@@ -827,7 +834,7 @@
 
           <!-- 蠻荒領主 -->
           <tr>
-            <td><strong>蠻荒領主</strong><br><span style="font-size:11px;color:var(--text2)">角色扮演</span></td>
+            <td><strong>蠻荒領主</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">角色扮演</span></td>
             <td>不刪檔內測</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>Android</td>
@@ -844,7 +851,7 @@
 
           <!-- 航海奇兵 -->
           <tr>
-            <td><strong>航海奇兵</strong><br><span style="font-size:11px;color:var(--text2)">卡牌·計費測試</span></td>
+            <td><strong>航海奇兵</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">卡牌·計費測試</span></td>
             <td>計費刪檔內測</td>
             <td><span class="type-badge type-orange">刪檔計費</span></td>
             <td>Android</td>
@@ -861,7 +868,7 @@
 
           <!-- 地牢獵手6 -->
           <tr>
-            <td><strong>地牢獵手6</strong><br><span style="font-size:11px;color:var(--text2)">Dungeon Hunter IP·角色扮演</span></td>
+            <td><strong>地牢獵手6</strong><span class="mkt mkt-global">🌏 全球</span><br><span style="font-size:11px;color:var(--text2)">Dungeon Hunter IP·角色扮演</span></td>
             <td>開測（日期待定）</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>Android/iOS</td>
@@ -878,7 +885,7 @@
 
           <!-- 盜墓筆記 -->
           <tr>
-            <td><strong>盜墓筆記（正版）</strong><br><span style="font-size:11px;color:var(--text2)">超人氣IP·角色扮演</span></td>
+            <td><strong>盜墓筆記（正版）</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">超人氣IP·角色扮演</span></td>
             <td>不刪檔內測</td>
             <td><span class="type-badge type-red">不刪檔測試</span></td>
             <td>Android</td>
@@ -895,7 +902,7 @@
 
           <!-- 英雄決戰 -->
           <tr>
-            <td><strong>英雄決戰</strong><br><span style="font-size:11px;color:var(--text2)">角色扮演</span></td>
+            <td><strong>英雄決戰</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">角色扮演</span></td>
             <td>刪檔內測</td>
             <td><span class="type-badge type-green">刪檔不計費</span></td>
             <td>Android</td>
@@ -919,7 +926,7 @@
 
           <!-- 宗師之上 -->
           <tr>
-            <td><strong>宗師之上</strong><br><span style="font-size:11px;color:var(--text2)">放置冒險 RPG・3D 輕國風</span></td>
+            <td><strong>宗師之上</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">放置冒險 RPG・3D 輕國風</span></td>
             <td>刪檔測試→正式上線</td>
             <td><span class="type-badge type-red">正式上線</span></td>
             <td>Android / iOS</td>
@@ -936,7 +943,7 @@
 
           <!-- 仙境傳說RO：守護永恒的愛2 -->
           <tr>
-            <td><strong>仙境傳說RO：守護永恒的愛2</strong><br><span style="font-size:11px;color:var(--text2)">心動自研・經典 MMORPG 次世代新作</span></td>
+            <td><strong>仙境傳說RO：守護永恒的愛2</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">心動自研・經典 MMORPG 次世代新作</span></td>
             <td>技術刪檔測試</td>
             <td><span class="type-badge type-green">刪檔不計費</span></td>
             <td>Android / iOS</td>
@@ -953,7 +960,7 @@
 
           <!-- 斗破蒼穹：斗帝之路 -->
           <tr>
-            <td><strong>斗破蒼穹：斗帝之路</strong><br><span style="font-size:11px;color:var(--text2)">正版授權・小隊RPG 爽遊・37手游</span></td>
+            <td><strong>斗破蒼穹：斗帝之路</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><span style="font-size:11px;color:var(--text2)">正版授權・小隊RPG 爽遊・37手游</span></td>
             <td>限量刪檔測試</td>
             <td><span class="type-badge type-green">刪檔不計費</span></td>
             <td>Android / iOS</td>
@@ -995,7 +1002,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong>異環 (NTE)</strong></td>
+            <td><strong>異環 (NTE)</strong><span class="mkt mkt-tw">🇹🇼 台港澳</span></td>
             <td>完美世界 幻塔工作室<br><span style="color:var(--accent);font-size:11px">台港澳：艾玩天地</span></td>
             <td><span class="type-badge type-red">公測已上線</span></td>
             <td>iOS/Android/PC/PS5/Mac</td>
@@ -1004,7 +1011,7 @@
             <td><div class="pm-note-cell">⚠️ 二次元開放世界ARPG直接競品，台灣已本地化，公測首週120+抽，高度威脅</div></td>
           </tr>
           <tr>
-            <td><strong>魔物獵人：旅人</strong></td>
+            <td><strong>魔物獵人：旅人</strong><span class="mkt mkt-global">🌏 全球</span></td>
             <td>CAPCOM IP・騰訊天美開發</td>
             <td><span class="type-badge type-red">公測已上線</span></td>
             <td>iOS / Android</td>
@@ -1013,7 +1020,7 @@
             <td><div class="pm-note-cell">⚠️ CAPCOM 正版 IP + 天美品質背書，開放世界狩獵玩法，預約破千萬，上線首週留存率極高</div></td>
           </tr>
           <tr>
-            <td><strong>無限大（Project Mugen）</strong></td>
+            <td><strong>無限大（Project Mugen）</strong><span class="mkt mkt-global">🌏 全球</span></td>
             <td>網易 伏羲工作室</td>
             <td><span class="type-badge type-orange">預約中</span></td>
             <td>iOS / Android / PC</td>
@@ -1022,7 +1029,7 @@
             <td><div class="pm-note-cell">🚨 <strong>結構性威脅</strong>：所有角色免費取得，挑戰傳統抽卡模式，可能重塑玩家付費預期</div></td>
           </tr>
           <tr>
-            <td><strong>鎭明閃擊</strong></td>
+            <td><strong>鎭明閃擊</strong><span class="mkt mkt-global">🌏 全球</span></td>
             <td>朝夕光年</td>
             <td><span class="type-badge type-red">公測已上線</span></td>
             <td>PC + 手遊多端互通</td>
@@ -1031,7 +1038,7 @@
             <td><div class="pm-note-cell">多端互通降低切換門檻，即時策略玩法差異化明顯，需持續追蹤 DAU 數據</div></td>
           </tr>
           <tr>
-            <td><strong>仙境傳說RO：守護永恒的愛2</strong></td>
+            <td><strong>仙境傳說RO：守護永恒的愛2</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
             <td>心動 B格猫工作室</td>
             <td><span class="type-badge type-green">技術刪檔測試</span></td>
             <td>iOS / Android</td>
@@ -1040,7 +1047,7 @@
             <td><div class="pm-note-cell">⚠️ 經典 MMORPG 次世代新作，情懷 IP 加持，無縫大地圖 + 動作系統強化，MMORPG 玩家高度重疊</div></td>
           </tr>
           <tr>
-            <td><strong>宗師之上</strong></td>
+            <td><strong>宗師之上</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
             <td>靈犀互娛</td>
             <td><span class="type-badge type-red">正式上線</span></td>
             <td>iOS / Android</td>
@@ -1049,7 +1056,7 @@
             <td><div class="pm-note-cell">3D 輕國風放置 RPG，多門派功法自由組合，極品裝備高爆率設計強化留存誘因</div></td>
           </tr>
           <tr>
-            <td><strong>遺忘之海</strong></td>
+            <td><strong>遺忘之海</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
             <td>網易</td>
             <td><span class="type-badge type-orange">三測招募中</span></td>
             <td>iOS / Android</td>
@@ -1058,7 +1065,7 @@
             <td><div class="pm-note-cell">🚨 網易出品，版號已到手，正式公測時程即將公布，需密切追蹤</div></td>
           </tr>
           <tr>
-            <td><strong>卡厄思夢境</strong></td>
+            <td><strong>卡厄思夢境</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
             <td>騰訊代理・克蘇魯二次元RPG</td>
             <td><span class="type-badge type-red">公測（不刪檔）</span></td>
             <td>iOS / Android</td>
@@ -1067,7 +1074,7 @@
             <td><div class="pm-note-cell">騰訊代理背書，克蘇魯題材在二次元圈高討論度，5/28正式公測值得重點觀察</div></td>
           </tr>
           <tr>
-            <td><strong>失控進化</strong></td>
+            <td><strong>失控進化</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
             <td>騰訊出品</td>
             <td><span class="type-badge type-green">技術測試中</span></td>
             <td>iOS / Android / HarmonyOS</td>
