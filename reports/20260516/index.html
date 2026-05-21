@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VNG 遊戲產業競爭情報看板</title>
+<title>GNO 遊戲產業競爭情報看板</title>
 <style>
   :root {
-    --bg: #0d1117;
-    --bg2: #161b22;
-    --bg3: #21262d;
-    --border: #30363d;
-    --text: #c9d1d9;
-    --text2: #8b949e;
-    --accent: #58a6ff;
-    --red: #f85149;
-    --orange: #e3b341;
-    --green: #3fb950;
-    --purple: #bc8cff;
+    --bg: #f8fafc;
+    --bg2: #ffffff;
+    --bg3: #f1f5f9;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --text2: #64748b;
+    --accent: #2563eb;
+    --red: #dc2626;
+    --orange: #d97706;
+    --green: #16a34a;
+    --purple: #7c3aed;
     --teal: #39d0d8;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,7 +24,7 @@
 
   /* Header */
   .header {
-    background: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #0d1117 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
     border-bottom: 1px solid var(--border);
     padding: 20px 24px;
     display: flex;
@@ -88,8 +88,8 @@
 
   /* Alert Banner */
   .alert-banner {
-    background: rgba(248, 81, 73, 0.1);
-    border: 1px solid rgba(248, 81, 73, 0.4);
+    background: rgba(220, 38, 38, 0.06);
+    border: 1px solid rgba(220, 38, 38, 0.25);
     border-radius: 8px;
     padding: 14px 16px;
     margin: 0 24px 20px;
@@ -98,7 +98,7 @@
     gap: 10px;
   }
   .alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-  .alert-text { color: #ff8080; font-size: 13px; line-height: 1.6; }
+  .alert-text { color: var(--red); font-size: 13px; line-height: 1.6; }
   .alert-title { font-weight: 700; color: var(--red); margin-bottom: 4px; }
 
   /* Timeline Table */
@@ -150,11 +150,11 @@
     letter-spacing: 0.3px;
     white-space: nowrap;
   }
-  .badge-red    { background: rgba(248,81,73,0.18); color: #ff7b72; border: 1px solid rgba(248,81,73,0.4); }
-  .badge-orange { background: rgba(227,179,65,0.18); color: #e3b341; border: 1px solid rgba(227,179,65,0.4); }
-  .badge-green  { background: rgba(63,185,80,0.18);  color: #56d364; border: 1px solid rgba(63,185,80,0.4); }
-  .badge-blue   { background: rgba(88,166,255,0.18); color: #79c0ff; border: 1px solid rgba(88,166,255,0.4); }
-  .badge-purple { background: rgba(188,140,255,0.18); color: #d2a8ff; border: 1px solid rgba(188,140,255,0.4); }
+  .badge-red    { background: rgba(220,38,38,0.08); color: #b91c1c; border: 1px solid rgba(220,38,38,0.3); }
+  .badge-orange { background: rgba(217,119,6,0.08); color: #b45309; border: 1px solid rgba(217,119,6,0.3); }
+  .badge-green  { background: rgba(22,163,74,0.08);  color: #15803d; border: 1px solid rgba(22,163,74,0.3); }
+  .badge-blue   { background: rgba(37,99,235,0.08); color: #1d4ed8; border: 1px solid rgba(37,99,235,0.3); }
+  .badge-purple { background: rgba(124,58,237,0.08); color: #6d28d9; border: 1px solid rgba(124,58,237,0.3); }
 
   /* Status dot */
   .status-dot { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; }
@@ -202,11 +202,11 @@
   .pm-insight {
     margin-top: 10px;
     padding: 10px 12px;
-    background: rgba(88,166,255,0.06);
+    background: rgba(37,99,235,0.05);
     border-left: 3px solid var(--accent);
     border-radius: 0 6px 6px 0;
     font-size: 11px;
-    color: #8db8e8;
+    color: var(--accent);
     line-height: 1.5;
   }
   .pm-insight strong { color: var(--accent); }
@@ -284,7 +284,7 @@
 <!-- HEADER -->
 <div class="header">
   <div class="header-left">
-    <h1>🎮 VNG 遊戲產業競爭情報看板</h1>
+    <h1>🎮 GNO 遊戲產業競爭情報看板</h1>
     <div class="subtitle">自動蒐集 · 每日 09:30 更新 · 涵蓋 TapTap / 九遊 / 巴哈姆特 / GameRes</div>
   </div>
   <div class="header-right">
@@ -772,7 +772,7 @@
 
 <!-- FOOTER -->
 <div class="footer">
-  <div>VNG遊戲產業競爭情報看板 · 自動排程任務 · 每日 09:30 執行</div>
+  <div>GNO 遊戲產業競爭情報看板 · 自動排程任務 · 每日 09:30 執行</div>
   <div style="margin-top:4px;">資料來源：TapTap / 九遊 / 巴哈姆特 GNN / GameRes / 17173 / 36氪 / 騰訊新聞 · 本報告由 AI 自動生成，建議結合官方公告交叉確認</div>
 </div>
 
