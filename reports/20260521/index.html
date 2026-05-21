@@ -6,19 +6,19 @@
 <title>GNO 遊戲產業競爭情報看板</title>
 <style>
   :root {
-    --bg: #0d1117;
-    --bg2: #161b22;
-    --bg3: #1c2128;
-    --border: #30363d;
-    --text: #e6edf3;
-    --text2: #8b949e;
-    --accent: #58a6ff;
-    --red: #f85149;
-    --orange: #e3902b;
-    --green: #3fb950;
-    --yellow: #d29922;
-    --purple: #a371f7;
-    --shadow: 0 4px 24px rgba(0,0,0,0.5);
+    --bg: #f8fafc;
+    --bg2: #ffffff;
+    --bg3: #f1f5f9;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --text2: #64748b;
+    --accent: #2563eb;
+    --red: #dc2626;
+    --orange: #d97706;
+    --green: #16a34a;
+    --yellow: #ca8a04;
+    --purple: #7c3aed;
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -30,7 +30,7 @@
 
   /* HEADER */
   .header {
-    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
     border-bottom: 1px solid var(--border);
     padding: 20px 24px;
     position: sticky;
@@ -57,7 +57,7 @@
   .header h1 {
     font-size: clamp(16px, 3vw, 22px);
     font-weight: 700;
-    background: linear-gradient(90deg, #58a6ff, #a371f7);
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -199,7 +199,7 @@
     line-height: 1.5;
   }
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: rgba(88,166,255,0.04); }
+  tr:hover td { background: rgba(37,99,235,0.04); }
 
   /* TEST TYPE BADGES */
   .type-badge {
@@ -210,10 +210,10 @@
     border-radius: 6px;
     white-space: nowrap;
   }
-  .type-red    { background: rgba(248,81,73,0.2);   color: #f85149; border: 1px solid rgba(248,81,73,0.4); }
-  .type-orange { background: rgba(227,144,43,0.2);  color: #e3902b; border: 1px solid rgba(227,144,43,0.4); }
-  .type-green  { background: rgba(63,185,80,0.2);   color: #3fb950; border: 1px solid rgba(63,185,80,0.4); }
-  .type-blue   { background: rgba(88,166,255,0.2);  color: #58a6ff; border: 1px solid rgba(88,166,255,0.4); }
+  .type-red    { background: rgba(220,38,38,0.1);   color: #b91c1c; border: 1px solid rgba(220,38,38,0.35); }
+  .type-orange { background: rgba(217,119,6,0.1);   color: #b45309; border: 1px solid rgba(217,119,6,0.35); }
+  .type-green  { background: rgba(22,163,74,0.1);   color: #15803d; border: 1px solid rgba(22,163,74,0.35); }
+  .type-blue   { background: rgba(37,99,235,0.1);   color: #1d4ed8; border: 1px solid rgba(37,99,235,0.35); }
 
   /* STATUS PILL */
   .status-pill {
@@ -226,9 +226,9 @@
     border-radius: 20px;
     white-space: nowrap;
   }
-  .status-active  { background: rgba(63,185,80,0.15);  color: #3fb950; }
-  .status-pending { background: rgba(88,166,255,0.15); color: #58a6ff; }
-  .status-ended   { background: rgba(139,148,158,0.15);color: #8b949e; }
+  .status-active  { background: rgba(22,163,74,0.12);  color: #15803d; }
+  .status-pending { background: rgba(37,99,235,0.12);  color: #1d4ed8; }
+  .status-ended   { background: rgba(100,116,139,0.12);color: #475569; }
   .status-dot {
     width: 6px; height: 6px;
     border-radius: 50%;
@@ -274,7 +274,7 @@
     position: absolute;
     top: 0; height: 100%;
     width: 2px;
-    background: rgba(88,166,255,0.7);
+    background: rgba(37,99,235,0.7);
     z-index: 5;
   }
   .gantt-month-labels {
@@ -327,12 +327,12 @@
     flex-shrink: 0;
     font-weight: 600;
   }
-  .cat-财报   { background: rgba(88,166,255,0.2); color: #58a6ff; }
-  .cat-新专案 { background: rgba(163,113,247,0.2); color: #a371f7; }
-  .cat-版号   { background: rgba(227,144,43,0.2); color: #e3902b; }
-  .cat-政策   { background: rgba(227,144,43,0.2); color: #e3902b; }
-  .cat-全球化 { background: rgba(63,185,80,0.2); color: #3fb950; }
-  .cat-技术   { background: rgba(248,81,73,0.2); color: #f85149; }
+  .cat-财报   { background: rgba(37,99,235,0.1);  color: #1d4ed8; }
+  .cat-新专案 { background: rgba(124,58,237,0.1); color: #6d28d9; }
+  .cat-版号   { background: rgba(217,119,6,0.1);  color: #b45309; }
+  .cat-政策   { background: rgba(217,119,6,0.1);  color: #b45309; }
+  .cat-全球化 { background: rgba(22,163,74,0.1);  color: #15803d; }
+  .cat-技术   { background: rgba(220,38,38,0.1);  color: #b91c1c; }
   .news-summary {
     font-size: 12px;
     color: var(--text2);
@@ -340,12 +340,12 @@
     margin-bottom: 10px;
   }
   .news-pm {
-    background: rgba(163,113,247,0.08);
+    background: rgba(124,58,237,0.06);
     border-left: 3px solid var(--purple);
     border-radius: 0 6px 6px 0;
     padding: 8px 10px;
     font-size: 11px;
-    color: #c8b9f7;
+    color: #5b21b6;
     line-height: 1.5;
     margin-bottom: 10px;
   }
@@ -371,8 +371,8 @@
   /* NEW GAMES TABLE EXTRA */
   .pm-note-cell {
     font-size: 11px;
-    color: #c8b9f7;
-    background: rgba(163,113,247,0.05);
+    color: #5b21b6;
+    background: rgba(124,58,237,0.06);
     border-left: 2px solid var(--purple);
     padding: 4px 8px;
     border-radius: 0 4px 4px 0;
@@ -383,8 +383,8 @@
   /* ALERT BOX */
   .alert-box {
     margin: 16px;
-    background: rgba(248,81,73,0.08);
-    border: 1px solid rgba(248,81,73,0.3);
+    background: rgba(220,38,38,0.05);
+    border: 1px solid rgba(220,38,38,0.25);
     border-radius: 10px;
     padding: 14px 16px;
     display: flex;
@@ -394,8 +394,8 @@
   .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
   .alert-content h4 { font-size: 13px; font-weight: 700; color: var(--red); margin-bottom: 6px; }
   .alert-content ul { padding-left: 16px; }
-  .alert-content li { font-size: 12px; color: var(--text2); line-height: 1.8; }
-  .alert-content li strong { color: var(--text); }
+  .alert-content li { font-size: 12px; color: #475569; line-height: 1.8; }
+  .alert-content li strong { color: #1e293b; }
 
   /* FOOTER */
   .footer {
