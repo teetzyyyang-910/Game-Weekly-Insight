@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GNO 遊戲產業情報中心</title>
+    <title>VNG 遊戲產業情報中心</title>
     <style>
-        :root { --primary: #00f2ff; --bg: #0f172a; --card: #1e293b; }
-        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: #f8fafc; margin: 0; padding: 2rem; display: flex; flex-direction: column; align-items: center; }
+        :root { --primary: #2563eb; --bg: #f8fafc; --card: #ffffff; --border: #e2e8f0; --text: #1e293b; --text2: #64748b; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 2rem; display: flex; flex-direction: column; align-items: center; }
         .container { max-width: 900px; width: 100%; }
         header { border-bottom: 2px solid var(--primary); padding-bottom: 1rem; margin-bottom: 2rem; }
-        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 1px; color: var(--primary); }
+        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 1px; background: linear-gradient(90deg,#2563eb,#7c3aed); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block;; }
         .report-grid { display: grid; gap: 1rem; }
-        .report-card { background: var(--card); border: 1px solid #334155; padding: 1.5rem; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; text-decoration: none; color: inherit; }
-        .report-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0, 242, 255, 0.1); }
+        .report-card { background: var(--card); border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 1.5rem; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; text-decoration: none; color: inherit; }
+        .report-card:hover { border-background: linear-gradient(90deg,#2563eb,#7c3aed); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block;; transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0, 242, 255, 0.1); }
         .date { font-weight: bold; font-family: monospace; font-size: 1.1rem; }
-        .view-btn { background: var(--primary); color: #000; padding: 0.5rem 1rem; border-radius: 6px; font-weight: bold; font-size: 0.8rem; }
+        .view-btn { background: var(--primary); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-weight: bold; font-size: 0.8rem; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>🚀 Games Project Intelligence Hub</h1>
-            <p style="color: #94a3b8;">每週競品動態與市場趨勢追蹤</p>
+            <p style="color: var(--text2);">每週競品動態與市場趨勢追蹤</p>
         </header>
 
         <div class="report-grid">
@@ -29,7 +29,7 @@
             <a href="reports/20260521/index.html" class="report-card">
                 <div>
                     <span class="date">2026-05-21</span>
-                    <div style="font-size: 0.9rem; color: #94a3b8; margin-top: 4px;">巴哈/TapTap/九遊/GameRes 綜合情報儀表板</div>
+                    <div style="font-size: 0.9rem; color: var(--text2); margin-top: 4px;">巴哈/TapTap/九遊/GameRes 綜合情報儀表板</div>
                 </div>
                 <div class="view-btn">VIEW REPORT</div>
             </a>
@@ -37,7 +37,7 @@
             <a href="reports/20260516/index.html" class="report-card">
                 <div>
                     <span class="date">2026-05-16</span>
-                    <div style="font-size: 0.9rem; color: #94a3b8; margin-top: 4px;">巴哈/TapTap/九遊 綜合情報儀表板</div>
+                    <div style="font-size: 0.9rem; color: var(--text2); margin-top: 4px;">巴哈/TapTap/九遊 綜合情報儀表板</div>
                 </div>
                 <div class="view-btn">VIEW REPORT</div>
             </a>
