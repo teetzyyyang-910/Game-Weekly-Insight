@@ -3,610 +3,778 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎮 GNO 遊戲產業競爭情報看板</title>
+<title>GNO 遊戲產業競爭情報看板</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root {
     --bg: #0d1117;
-    --card-bg: #161b22;
-    --card-border: #21262d;
-    --primary: #00d4ff;
-    --accent: #7b2ff7;
+    --bg2: #161b22;
+    --bg3: #21262d;
+    --border: #30363d;
     --text: #c9d1d9;
-    --text-muted: #8b949e;
-    --tag-bg: rgba(0, 212, 255, 0.12);
-    --tag-border: rgba(0, 212, 255, 0.3);
-    --insight-bg: rgba(123, 47, 247, 0.1);
-    --insight-border: rgba(123, 47, 247, 0.4);
+    --text2: #8b949e;
+    --accent: #58a6ff;
+    --red: #f85149;
+    --orange: #e3b341;
+    --green: #3fb950;
+    --purple: #bc8cff;
+    --teal: #39d0d8;
   }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif; font-size: 14px; line-height: 1.6; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-    min-height: 100vh;
-  }
-
-  /* ── Header ── */
+  /* Header */
   .header {
-    background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
-    border-bottom: 1px solid var(--primary);
-    padding: 28px 24px 20px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--primary), var(--accent), var(--primary), transparent);
-    animation: shimmer 3s infinite;
-  }
-  @keyframes shimmer {
-    0%   { background-position: -400px 0; }
-    100% { background-position: 400px 0; }
-  }
-  .header h1 {
-    font-size: clamp(1.4rem, 4vw, 2rem);
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 1px;
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-  }
-  .header h1 span { color: var(--primary); }
-  .header .subtitle {
-    margin-top: 8px;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-  }
-  .stats-row {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin-top: 16px;
-    flex-wrap: wrap;
-  }
-  .stat-chip {
-    background: rgba(0, 212, 255, 0.08);
-    border: 1px solid rgba(0, 212, 255, 0.25);
-    border-radius: 20px;
-    padding: 4px 14px;
-    font-size: 0.8rem;
-    color: var(--primary);
-  }
-
-  /* ── Tabs ── */
-  .tabs-nav {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    padding: 20px 16px 0;
-    flex-wrap: wrap;
-  }
-  .tab-btn {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    color: var(--text-muted);
-    padding: 10px 20px;
-    border-radius: 8px 8px 0 0;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    white-space: nowrap;
-  }
-  .tab-btn:hover {
-    color: var(--primary);
-    border-color: var(--primary);
-  }
-  .tab-btn.active {
-    color: var(--primary);
-    border-color: var(--primary);
-    border-bottom-color: var(--bg);
-    background: var(--bg);
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── Tab Panels ── */
-  .tabs-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 16px 48px;
-  }
-  .tab-panel {
-    display: none;
-    animation: fadeIn 0.3s ease;
-  }
-  .tab-panel.active { display: block; }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .panel-header {
-    border: 1px solid var(--primary);
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-    padding: 14px 20px;
-    margin-bottom: 20px;
+    background: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #0d1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 24px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 12px;
-    background: rgba(0, 212, 255, 0.04);
   }
-  .panel-count {
-    background: var(--primary);
-    color: #0d1117;
-    font-weight: 700;
-    font-size: 0.8rem;
-    padding: 2px 10px;
-    border-radius: 12px;
-  }
-  .panel-title { color: var(--text); font-size: 0.9rem; }
-
-  /* ── Cards Grid ── */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 16px;
-  }
-
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 18px;
-    transition: all 0.25s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .card:hover {
-    border-color: var(--primary);
-    box-shadow: 0 0 16px rgba(0, 212, 255, 0.18), 0 0 4px rgba(0, 212, 255, 0.1);
-    transform: translateY(-2px);
-  }
-
-  .card-title a {
-    color: #e6edf3;
+  .header-left h1 { font-size: 22px; font-weight: 700; color: var(--accent); letter-spacing: 1px; }
+  .header-left .subtitle { font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .header-right { text-align: right; }
+  .date-badge {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
     font-weight: 600;
-    font-size: 0.95rem;
-    line-height: 1.45;
-    text-decoration: none;
-    display: block;
   }
-  .card-title a:hover { color: var(--primary); }
+  .date-badge span { display: block; font-size: 11px; color: var(--text2); font-weight: 400; }
 
-  .card-meta {
+  /* Stats Bar */
+  .stats-bar {
+    display: flex;
+    gap: 12px;
+    padding: 16px 24px;
+    flex-wrap: wrap;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-card {
+    flex: 1;
+    min-width: 130px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    text-align: center;
+  }
+  .stat-card .num { font-size: 28px; font-weight: 700; }
+  .stat-card .lbl { font-size: 11px; color: var(--text2); margin-top: 2px; }
+  .stat-card.red .num { color: var(--red); }
+  .stat-card.orange .num { color: var(--orange); }
+  .stat-card.green .num { color: var(--green); }
+  .stat-card.blue .num { color: var(--accent); }
+  .stat-card.purple .num { color: var(--purple); }
+
+  /* Section */
+  .section { padding: 20px 24px; }
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     gap: 8px;
-    flex-wrap: wrap;
   }
-  .source-badge {
-    background: rgba(123, 47, 247, 0.15);
-    border: 1px solid rgba(123, 47, 247, 0.35);
-    color: #c084fc;
-    font-size: 0.72rem;
-    padding: 2px 8px;
-    border-radius: 10px;
+  .section-title::before { content: ''; display: inline-block; width: 4px; height: 16px; background: var(--accent); border-radius: 2px; }
+
+  /* Alert Banner */
+  .alert-banner {
+    background: rgba(248, 81, 73, 0.1);
+    border: 1px solid rgba(248, 81, 73, 0.4);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 0 24px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .alert-text { color: #ff8080; font-size: 13px; line-height: 1.6; }
+  .alert-title { font-weight: 700; color: var(--red); margin-bottom: 4px; }
+
+  /* Timeline Table */
+  .timeline-wrap { overflow-x: auto; margin-top: 4px; }
+  table { width: 100%; border-collapse: collapse; min-width: 680px; }
+  thead th {
+    background: var(--bg3);
+    color: var(--text2);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+  }
+  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  tbody tr:hover { background: var(--bg3); }
+  tbody td { padding: 10px 12px; vertical-align: middle; }
+
+  .game-name { font-weight: 600; color: var(--text); }
+  .game-dev { font-size: 11px; color: var(--text2); margin-top: 2px; }
+  .genre-tag {
+    display: inline-block;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    font-size: 11px;
+    color: var(--text2);
+  }
+  .platform-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text2);
+  }
+
+  /* Test type badges */
+  .badge {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
     white-space: nowrap;
   }
-  .date-badge {
-    color: var(--text-muted);
-    font-size: 0.75rem;
-  }
+  .badge-red    { background: rgba(248,81,73,0.18); color: #ff7b72; border: 1px solid rgba(248,81,73,0.4); }
+  .badge-orange { background: rgba(227,179,65,0.18); color: #e3b341; border: 1px solid rgba(227,179,65,0.4); }
+  .badge-green  { background: rgba(63,185,80,0.18);  color: #56d364; border: 1px solid rgba(63,185,80,0.4); }
+  .badge-blue   { background: rgba(88,166,255,0.18); color: #79c0ff; border: 1px solid rgba(88,166,255,0.4); }
+  .badge-purple { background: rgba(188,140,255,0.18); color: #d2a8ff; border: 1px solid rgba(188,140,255,0.4); }
 
-  .tags-row { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag {
-    background: var(--tag-bg);
-    border: 1px solid var(--tag-border);
-    color: var(--primary);
-    font-size: 0.72rem;
-    padding: 2px 8px;
+  /* Status dot */
+  .status-dot { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-active { background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; }
+  .dot-pending { background: var(--orange); }
+  .dot-ended   { background: var(--text2); }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+  /* Date range */
+  .date-range { font-size: 12px; color: var(--text2); white-space: nowrap; }
+  .date-range strong { color: var(--text); }
+
+  /* Divider */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0 24px; }
+
+  /* News grid */
+  .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+  .news-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
     border-radius: 10px;
+    padding: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-
-  .insight-box {
-    background: var(--insight-bg);
+  .news-card:hover { border-color: var(--accent); box-shadow: 0 0 12px rgba(88,166,255,0.1); }
+  .news-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+  .news-card-title { font-weight: 600; font-size: 13px; color: var(--text); line-height: 1.4; }
+  .cat-badge {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .cat-财报 { background: rgba(88,166,255,0.15); color: var(--accent); }
+  .cat-新遊 { background: rgba(63,185,80,0.15); color: var(--green); }
+  .cat-出海 { background: rgba(188,140,255,0.15); color: var(--purple); }
+  .cat-技術 { background: rgba(57,208,216,0.15); color: var(--teal); }
+  .cat-政策 { background: rgba(248,81,73,0.15); color: var(--red); }
+  .news-content { font-size: 12px; color: var(--text2); line-height: 1.6; margin-bottom: 10px; }
+  .news-meta { display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: var(--text2); flex-wrap: wrap; gap: 4px; }
+  .news-company { color: var(--accent); font-weight: 600; }
+  .pm-insight {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: rgba(88,166,255,0.06);
     border-left: 3px solid var(--accent);
     border-radius: 0 6px 6px 0;
-    padding: 8px 12px;
-    font-size: 0.8rem;
-    color: #d2b4fe;
+    font-size: 11px;
+    color: #8db8e8;
     line-height: 1.5;
   }
-  .insight-box::before {
-    content: "【PM 觀點】";
-    font-weight: 700;
-    color: #a855f7;
-    display: block;
-    margin-bottom: 3px;
-    font-size: 0.72rem;
-  }
+  .pm-insight strong { color: var(--accent); }
 
-  /* ── Empty State ── */
-  .empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    border: 1px dashed var(--card-border);
+  /* New games section */
+  .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .game-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
     border-radius: 10px;
+    padding: 14px 16px;
+    transition: border-color 0.2s;
   }
-  .empty-state .icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .game-card:hover { border-color: var(--green); }
+  .game-card-name { font-weight: 700; font-size: 14px; margin-bottom: 6px; color: var(--text); }
+  .game-card-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .game-card-notes { font-size: 11px; color: var(--text2); line-height: 1.5; }
+  .launch-date { font-size: 11px; color: var(--green); font-weight: 600; }
 
-  /* ── Footer ── */
+  /* Legend */
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+  /* Trends */
+  .trends-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .trends-list li {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .trend-num {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    background: var(--accent);
+    color: #000;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  /* Footer */
   .footer {
     text-align: center;
-    padding: 24px;
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    border-top: 1px solid var(--card-border);
+    padding: 20px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text2);
+    font-size: 12px;
+    background: var(--bg2);
   }
 
-  /* ── RWD ── */
+  /* RWD */
   @media (max-width: 600px) {
-    .header { padding: 20px 16px 16px; }
-    .tabs-nav { gap: 2px; }
-    .tab-btn { padding: 8px 14px; font-size: 0.82rem; }
-    .cards-grid { grid-template-columns: 1fr; }
-    .stats-row { gap: 10px; }
+    .header { padding: 16px; }
+    .header-left h1 { font-size: 17px; }
+    .section { padding: 16px; }
+    .stats-bar { padding: 12px 16px; }
+    .alert-banner { margin: 0 16px 16px; }
+    .divider { margin: 0 16px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Header -->
+<!-- HEADER -->
 <div class="header">
-  <h1>🎮 GNO <span>遊戲產業競爭情報看板</span></h1>
-  <div class="subtitle">資料抓取日期：2026-05-15　|　自動排程任務</div>
-  <div class="stats-row">
-    <span class="stat-chip">🚀 新遊上線 10 則</span>
-    <span class="stat-chip">🧪 測試更新 10 則</span>
-    <span class="stat-chip">🏢 公司動態 10 則</span>
-    <span class="stat-chip">📊 合計 30 則</span>
+  <div class="header-left">
+    <h1>🎮 GNO 遊戲產業競爭情報看板</h1>
+    <div class="subtitle">自動蒐集 · 每日 09:30 更新 · 涵蓋 TapTap / 九遊 / 巴哈姆特 / GameRes</div>
+  </div>
+  <div class="header-right">
+    <div class="date-badge">
+      2026 年 5 月 15 日
+      <span>資料區間：2026-05-08 ～ 2026-05-15</span>
+    </div>
   </div>
 </div>
 
-<!-- Tabs Navigation -->
-<div class="tabs-wrapper">
-  <div class="tabs-nav">
-    <button class="tab-btn active" onclick="switchTab('tab1', this)">🚀 新遊上線預告</button>
-    <button class="tab-btn" onclick="switchTab('tab2', this)">🧪 測試與版本更新</button>
-    <button class="tab-btn" onclick="switchTab('tab3', this)">🏢 公司計畫與產業趨勢</button>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-card red">
+    <div class="num">3</div>
+    <div class="lbl">公測 / 正式上線</div>
   </div>
-
-  <!-- Tab 1 -->
-  <div id="tab1" class="tab-panel active">
-    <div class="panel-header">
-      <span class="panel-count">10 則</span>
-      <span class="panel-title">新遊上線、公測、代理與預約消息</span>
-    </div>
-    <div class="cards-grid" id="grid1"></div>
+  <div class="stat-card orange">
+    <div class="num">2</div>
+    <div class="lbl">刪檔計費測試</div>
   </div>
-
-  <!-- Tab 2 -->
-  <div id="tab2" class="tab-panel">
-    <div class="panel-header">
-      <span class="panel-count">10 則</span>
-      <span class="panel-title">封測、版本更新、聯動與周年慶活動</span>
-    </div>
-    <div class="cards-grid" id="grid2"></div>
+  <div class="stat-card green">
+    <div class="num">3</div>
+    <div class="lbl">刪檔不計費測試</div>
   </div>
-
-  <!-- Tab 3 -->
-  <div id="tab3" class="tab-panel">
-    <div class="panel-header">
-      <span class="panel-count">10 則</span>
-      <span class="panel-title">廠商財報、版號政策、技術與全球化佈局</span>
-    </div>
-    <div class="cards-grid" id="grid3"></div>
+  <div class="stat-card blue">
+    <div class="num">38</div>
+    <div class="lbl">本週期開測總數（GameRes）</div>
+  </div>
+  <div class="stat-card purple">
+    <div class="num">4</div>
+    <div class="lbl">二次元 / ARPG 競品預警</div>
   </div>
 </div>
 
+<!-- ALERT BANNER -->
+<div class="alert-banner">
+  <div class="alert-icon">🚨</div>
+  <div class="alert-text">
+    <div class="alert-title">⚔️ 競品威脅警示 — 二次元 ARPG 賽道三路夾擊</div>
+    ①《異環》（完美世界）全平台公測首日流水破億，運營勢頭強勁持續發酵；②《遺忘之海》（網易）破曉號三測預計 5/22 前瞻直播後啟動，不刪檔資料可繼承；③《怪物獵人：旅人》（騰訊×Capcom）正版 IP ARPG 公測臨近；④《二重螺旋》5 月版本持續更新，免費角色策略持續吸引用戶。建議重點追蹤 <strong>網易 520 發布會（5/20）</strong>後各競品首測動向。
+  </div>
+</div>
+
+<!-- SECTION 1: 開測時程表 -->
+<div class="section">
+  <div class="section-title">📅 開測時程表（Timeline View）</div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#ff7b72;"></div>公測 / 不刪檔 — 最高威脅</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e3b341;"></div>刪檔計費 — 商業化動作</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#56d364;"></div>刪檔不計費 — 技術測試</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#79c0ff;"></div>封測 / 招募中</div>
+  </div>
+
+  <div class="timeline-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:160px;">遊戲名稱</th>
+          <th style="min-width:100px;">類型</th>
+          <th style="min-width:130px;">測試性質</th>
+          <th style="min-width:90px;">平台</th>
+          <th style="min-width:180px;">時程區間</th>
+          <th style="min-width:90px;">當前狀態</th>
+          <th style="min-width:120px;">開發商</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="game-name">異環</div>
+            <div class="game-dev">Hotta Studio（完美世界）</div>
+          </td>
+          <td><span class="genre-tag">二次元 ARPG</span></td>
+          <td><span class="badge badge-red">公測</span></td>
+          <td><span class="platform-tag">📱 雙端 + PC + PS5</span></td>
+          <td>
+            <div class="date-range"><strong>2026-04-23</strong> 起（無限期）</div>
+            <div style="font-size:11px;color:#e3b341;margin-top:2px;">⚠️ 首日流水破億</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-active"></span>測試中</span></td>
+          <td style="font-size:12px;">完美世界</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="game-name">二重螺旋</div>
+            <div class="game-dev">英雄遊戲 潘神工作室</div>
+          </td>
+          <td><span class="genre-tag">二次元 ARPG</span></td>
+          <td><span class="badge badge-red">公測（無卡池）</span></td>
+          <td><span class="platform-tag">📱 雙端 + PC</span></td>
+          <td>
+            <div class="date-range"><strong>2025-10-28</strong> 起（持續運營）</div>
+            <div style="font-size:11px;color:#56d364;margin-top:2px;">5月「皓蒼訣」版本更新中</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-active"></span>測試中</span></td>
+          <td style="font-size:12px;">英雄遊戲</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="game-name">洛克王國：世界</div>
+            <div class="game-dev">騰訊遊戲</div>
+          </td>
+          <td><span class="genre-tag">開放世界 / 寵物</span></td>
+          <td><span class="badge badge-red">公測</span></td>
+          <td><span class="platform-tag">📱 雙端</span></td>
+          <td>
+            <div class="date-range"><strong>2026-03-26</strong> 起（5月活動進行中）</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-active"></span>測試中</span></td>
+          <td style="font-size:12px;">騰訊</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="game-name">龍之谷：啟程</div>
+            <div class="game-dev">經典 IP 正統手游</div>
+          </td>
+          <td><span class="genre-tag">ARPG / MMO</span></td>
+          <td><span class="badge badge-red">公測</span></td>
+          <td><span class="platform-tag">📱 雙端</span></td>
+          <td>
+            <div class="date-range"><strong>2026-05-01</strong> 起</div>
+            <div style="font-size:11px;color:#56d364;margin-top:2px;">5月各大下載榜榜首</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-active"></span>測試中</span></td>
+          <td style="font-size:12px;">未明確</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="game-name">黎明之海</div>
+            <div class="game-dev">待確認</div>
+          </td>
+          <td><span class="genre-tag">待確認</span></td>
+          <td><span class="badge badge-red">公測</span></td>
+          <td><span class="platform-tag">📱 雙端</span></td>
+          <td>
+            <div class="date-range"><strong>2026-05-10</strong> 起</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-active"></span>測試中</span></td>
+          <td style="font-size:12px;">待確認</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="game-name">閃耀吧！噜咪</div>
+            <div class="game-dev">bilibili 遊戲</div>
+          </td>
+          <td><span class="genre-tag">寵物收集冒險</span></td>
+          <td><span class="badge badge-orange">刪檔計費</span></td>
+          <td><span class="platform-tag">🤖 Android</span></td>
+          <td>
+            <div class="date-range"><strong>2026-05-08</strong> 起（限量名額）</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-active"></span>測試中</span></td>
+          <td style="font-size:12px;">bilibili</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="game-name">七界夢譚</div>
+            <div class="game-dev">飛光閣工作室</div>
+          </td>
+          <td><span class="genre-tag">國風仙詭 MMO</span></td>
+          <td><span class="badge badge-orange">刪檔計費</span></td>
+          <td><span class="platform-tag">🤖 Android</span></td>
+          <td>
+            <div class="date-range"><strong>2026-05-15</strong> 起（限量名額）</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-active"></span>測試中</span></td>
+          <td style="font-size:12px;">飛光閣</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="game-name">飢困荒野</div>
+            <div class="game-dev">騰訊發行 / Klei 授權</div>
+          </td>
+          <td><span class="genre-tag">多人生存冒險</span></td>
+          <td><span class="badge badge-green">刪檔不計費</span></td>
+          <td><span class="platform-tag">📱 雙端</span></td>
+          <td>
+            <div class="date-range"><strong>2026-05-14</strong> 起</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-active"></span>測試中</span></td>
+          <td style="font-size:12px;">騰訊</td>
+        </tr>
+        <tr style="background: rgba(88,166,255,0.04);">
+          <td>
+            <div class="game-name">遺忘之海</div>
+            <div class="game-dev">網易遊戲</div>
+          </td>
+          <td><span class="genre-tag">開放世界 RPG</span></td>
+          <td><span class="badge badge-green">不刪檔測試（三測）</span></td>
+          <td><span class="platform-tag">📱 雙端</span></td>
+          <td>
+            <div class="date-range">⏳ <strong>5/22 前瞻直播後</strong>公布確定日期</div>
+            <div style="font-size:11px;color:#e3b341;margin-top:2px;">⚠️ 資料繼承至公測</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-pending"></span>預約中</span></td>
+          <td style="font-size:12px;">網易</td>
+        </tr>
+        <tr style="background: rgba(88,166,255,0.04);">
+          <td>
+            <div class="game-name">熱帶度假村模擬器</div>
+            <div class="game-dev">待確認</div>
+          </td>
+          <td><span class="genre-tag">模擬經營</span></td>
+          <td><span class="badge badge-red">公測（V1上線）</span></td>
+          <td><span class="platform-tag">📱 雙端</span></td>
+          <td>
+            <div class="date-range">⏳ <strong>2026-05-21</strong> 正式上線</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-pending"></span>預約中</span></td>
+          <td style="font-size:12px;">待確認</td>
+        </tr>
+        <tr style="background: rgba(88,166,255,0.04);">
+          <td>
+            <div class="game-name">怪物獵人：旅人</div>
+            <div class="game-dev">騰訊天美 × Capcom</div>
+          </td>
+          <td><span class="genre-tag">動作狩獵 ARPG</span></td>
+          <td><span class="badge badge-red">公測（日期待定）</span></td>
+          <td><span class="platform-tag">📱 雙端</span></td>
+          <td>
+            <div class="date-range">⏳ <strong>2026-05</strong>（具體日期待定）</div>
+            <div style="font-size:11px;color:#ff8080;margin-top:2px;">⚠️ 正版IP，ARPG強競品</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-pending"></span>預約中</span></td>
+          <td style="font-size:12px;">騰訊天美</td>
+        </tr>
+        <tr style="background: rgba(88,166,255,0.04);">
+          <td>
+            <div class="game-name">藍色星原：旅謠</div>
+            <div class="game-dev">Manjuu / NIJIGEN（台港澳）</div>
+          </td>
+          <td><span class="genre-tag">二次元 幻想 RPG</span></td>
+          <td><span class="badge badge-blue">台服封測招募</span></td>
+          <td><span class="platform-tag">📱 雙端</span></td>
+          <td>
+            <div class="date-range">⏳ 招募至 <strong>2026-05-29</strong></div>
+            <div style="font-size:11px;color:#79c0ff;margin-top:2px;">碧藍航線開發商新作</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-pending"></span>預約中</span></td>
+          <td style="font-size:12px;">Manjuu</td>
+        </tr>
+        <tr style="background: rgba(88,166,255,0.04);">
+          <td>
+            <div class="game-name">代號：神不言</div>
+            <div class="game-dev">玩呐事業部（閃亮之名製作組）</div>
+          </td>
+          <td><span class="genre-tag">女性向 戀愛互動</span></td>
+          <td><span class="badge badge-blue">首曝預約（測試待定）</span></td>
+          <td><span class="platform-tag">📱 雙端 + PC</span></td>
+          <td>
+            <div class="date-range">⏳ 測試時程尚未公布</div>
+            <div style="font-size:11px;color:#79c0ff;margin-top:2px;">首曝預約破100萬</div>
+          </td>
+          <td><span class="status-dot"><span class="dot dot-pending"></span>預約中</span></td>
+          <td style="font-size:12px;">玩呐事業部</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 2: 新遊上線 -->
+<div class="section">
+  <div class="section-title">🆕 本期新遊上線 / 預約動態（Agent 1）</div>
+  <div class="games-grid">
+
+    <div class="game-card">
+      <div class="game-card-name">🌟 異環（Yi Huan）</div>
+      <div class="game-card-meta">
+        <span class="badge badge-red">已公測</span>
+        <span class="genre-tag">二次元開放世界 ARPG</span>
+        <span class="launch-date">📅 2026-04-23</span>
+      </div>
+      <div class="game-card-notes">完美世界 Hotta Studio 作品，UE5 引擎打造，號稱「二次元 GTA」。全球預約破 3500 萬，TapTap 關注超 600 萬。4/23 中國公測，4/29 海外公測，首日流水超 1 億人民幣。全平台：iOS / Android / PC / Mac / 鴻蒙 / PS5。</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-card-name">🌊 龍之谷：啟程</div>
+      <div class="game-card-meta">
+        <span class="badge badge-red">已公測</span>
+        <span class="genre-tag">ARPG / MMORPG</span>
+        <span class="launch-date">📅 2026-05-01</span>
+      </div>
+      <div class="game-card-notes">經典端游《龍之谷》正統手游續作，無鎖定動作戰鬥機制，加入大型公會對戰、百人同屏世界 BOSS。5 月各大下載榜霸榜。</div>
+    </div>
+
+    <div class="game-card" style="border-color: rgba(88,166,255,0.3);">
+      <div class="game-card-name">⭐ 藍色星原：旅謠（台港澳）</div>
+      <div class="game-card-meta">
+        <span class="badge badge-blue">台服封測招募</span>
+        <span class="genre-tag">二次元 幻想 RPG</span>
+      </div>
+      <div class="game-card-notes">碧藍航線開發商 Manjuu 新作，台港澳由 NIJIGEN GAMES 代理。5/15 宣布台服封測公開招募，招募至 2026-05-29 23:59。2026 台北電玩展已首次亮相。</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-card-name">🦊 青丘世界：緣起</div>
+      <div class="game-card-meta">
+        <span class="badge badge-blue">台灣事前預約</span>
+        <span class="genre-tag">3D 仙俠 MMORPG</span>
+      </div>
+      <div class="game-card-notes">台灣代理為喬葳數位行銷，5/5 開啟事前預約，安心亞擔任代言人。四大職業：靈狐、劍仙、月追、龍槍。MyCard 平台同步開放。</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-card-name">🏰 洛克王國：世界</div>
+      <div class="game-card-meta">
+        <span class="badge badge-red">已公測</span>
+        <span class="genre-tag">開放世界 / 寵物養成</span>
+        <span class="launch-date">📅 2026-03-26</span>
+      </div>
+      <div class="game-card-notes">騰訊出品，5 月仍持續活躍，5/8～5/21 皮卡月刊時裝活動上線。首月 DAU 達 1300 萬，為騰訊新亮點產品。</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-card-name">🏝️ 熱帶度假村模擬器</div>
+      <div class="game-card-meta">
+        <span class="badge badge-orange">即將上線</span>
+        <span class="genre-tag">模擬經營</span>
+        <span class="launch-date">📅 2026-05-21</span>
+      </div>
+      <div class="game-card-notes">V1 版本確認 2026-05-21 推出，休閒模擬類，官方額外優化一週後定檔。</div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 3: 產業情報 -->
+<div class="section">
+  <div class="section-title">📰 產業情報 — 大廠動向與趨勢（Agent 3）</div>
+  <div class="news-grid">
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">騰訊 Q1 2026 財報：遊戲收入 642 億，長青遊戲流水創新高</div>
+        <span class="cat-badge cat-财报">財報</span>
+      </div>
+      <div class="news-content">騰訊 2026 Q1 本土市場遊戲收入 454 億元（YoY +6%），國際市場 188 億元（YoY +13%），合計 642 億元。《王者榮耀》《和平精英》《三角洲行動》長青遊戲流水均創季度新高。新品《洛克王國：世界》首月 DAU 達 1300 萬。</div>
+      <div class="news-meta">
+        <span class="news-company">騰訊</span>
+        <span>2026-05-13 · 新浪財經 / 36氪</span>
+      </div>
+      <div class="pm-insight"><strong>【PM 觀點】</strong>騰訊長青遊戲持續吸量，頂級 IP 護城河效應極強。國際市場增速（13%）遠超本土（6%），出海策略已成主要成長驅動力。競品須留意騰訊在東南亞的進一步滲透，以及 AI 功能（AI 隊友）帶來的黏著度提升。</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">網易 520 發布會定檔 5/20，40+ 款遊戲集中亮相</div>
+        <span class="cat-badge cat-新遊">新遊</span>
+      </div>
+      <div class="news-content">網易遊戲以「熱愛 100% 加載」為主題，5/20 19:30 舉辦線上發布會，涵蓋 40 餘款遊戲年度重磅資訊。新游《遺忘之海》《山海奇旅》首次爆料，《逆水寒》端游同步推出新流派。網易大神平台整合 AI 內容創作能力。</div>
+      <div class="news-meta">
+        <span class="news-company">網易</span>
+        <span>2026-05-11 · IT之家 / 17173.com</span>
+      </div>
+      <div class="pm-insight"><strong>【PM 觀點】</strong>網易以「520 情人節」為行銷節點集中曝光 40+ 款產品，顯示多元化產品矩陣的運營策略。AI 能力整合至社群平台，可能提升玩家轉換成本。⚠️ 5/20 後需立即追蹤各競品首測動向。</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">米哈遊《原神》5.6 版本更新 + 新 IP《Varsapura》UE5 開發中</div>
+        <span class="cat-badge cat-新遊">新遊</span>
+      </div>
+      <div class="news-content">《原神》5/7 更新 5.6 版本「悖理」，重返蒙德雪山三層地圖。另《Varsapura（雨之城）》由聯合創辦人蔡浩宇擔任製作人，採用 UE5 開發都市開放世界，預計 2027 年後上線。</div>
+      <div class="news-meta">
+        <span class="news-company">米哈遊</span>
+        <span>2026-05-07 · 游民星空 / DoNews</span>
+      </div>
+      <div class="pm-insight"><strong>【PM 觀點】</strong>米哈遊以「情懷回歸」策略維繫老玩家黏性，同時布局《Varsapura》等新 IP。競品若要正面競爭需在美術品質與世界觀深度投入更高成本，差異化策略更為實際。</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">二次元市場大洗牌：超 20 款停運，頭部資源集中化</div>
+        <span class="cat-badge cat-财报">市場</span>
+      </div>
+      <div class="news-content">2025～2026 間超過 20 款二次元遊戲宣告停運，市場進入「星際戰艦級對決」階段。玩家對「米式卡池」產生疲態，更傾向選擇米哈遊、鷹角等有成功履歷的大廠產品，中小型二游生存空間大幅壓縮。</div>
+      <div class="news-meta">
+        <span class="news-company">全市場</span>
+        <span>2026-05-上旬 · 36氪 / 知乎</span>
+      </div>
+      <div class="pm-insight"><strong>【PM 觀點】</strong>二游市場停運潮是對中小廠商的市場出清，頭部玩家將受益於存活玩家集中流入。若產品屬中型規模，需思考差異化定位（垂直題材、機制創新），否則難以與頂級資本量對抗。</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">中國遊戲出海 2025 年收入 204.55 億美元，東南亞分層策略成型</div>
+        <span class="cat-badge cat-出海">出海</span>
+      </div>
+      <div class="news-content">2025 年中國自研遊戲海外收入達 204.55 億美元（YoY +10.23%），連續六年超千億人民幣。東南亞分層策略：印尼作為巨量拉新池，新加坡與泰國為高價值變現區。98 家遊戲企業列入國家文化出口重點企業目錄。</div>
+      <div class="news-meta">
+        <span class="news-company">全市場</span>
+        <span>2026-05月 · 搜狐 / Sensor Tower</span>
+      </div>
+      <div class="pm-insight"><strong>【PM 觀點】</strong>東南亞市場分層策略已成主流共識，需特別關注新加坡與泰國的付費深度，以及頭部中國廠商在本地化投入的力度。台灣作為東南亞出海的文化試金石，線下活動成功模式可複製。</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">AI 研發滲透率突破 86%，美術標配但劇情創作仍受質疑</div>
+        <span class="cat-badge cat-技術">技術</span>
+      </div>
+      <div class="news-content">中國遊戲研發 AI 應用率達 86.36%，美術環節滲透率超 84%，靜態視覺資產生成已是行業標配。「世界觀架構與劇情大綱」AI 滲透率最低僅 31.6%。騰訊《和平精英》AI 隊友累計體驗用戶達 1.1 億。</div>
+      <div class="news-meta">
+        <span class="news-company">全市場</span>
+        <span>2026-05月 · 知乎 / 量子位 / 機核</span>
+      </div>
+      <div class="pm-insight"><strong>【PM 觀點】</strong>AI 大幅降低美術生產成本，為中小廠商創造更公平競爭環境；但高品質劇情與世界觀仍是核心壁壘，頭部廠商人才優勢更突出。需評估 AI 輔助能否縮短研發週期並保持體驗獨特性。</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">《鳴潮》Xbox Series X/S 版確認 2026 年 7 月上線，庫洛全平台布局完成</div>
+        <span class="cat-badge cat-新遊">新遊</span>
+      </div>
+      <div class="news-content">庫洛遊戲《鳴潮》Xbox Series X/S 版確認 2026 年 7 月發布，完成 PC / iOS / Android / PS5 / macOS / Xbox 全平台覆蓋。在開放世界賽道，《鳴潮》被視為《原神》之後最具競爭力的二當家。</div>
+      <div class="news-meta">
+        <span class="news-company">庫洛遊戲</span>
+        <span>2026-05月 · 鳴潮 Wiki / 鈦媒體</span>
+      </div>
+      <div class="pm-insight"><strong>【PM 觀點】</strong>庫洛的全平台策略顯示其長期投入決心，Xbox 玩家群體在東南亞與歐美市場具有潛在規模。對 PM 而言，多平台觸及策略是值得參考的市場擴張路徑。</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">GameRes：5/4～5/17 共 38 款遊戲進入測試，行業競爭加劇</div>
+        <span class="cat-badge cat-新遊">市場</span>
+      </div>
+      <div class="news-content">GameRes 游資網統計顯示，2026 年 5/4 至 5/17 共有 38 款遊戲進入測試階段，涵蓋多元品類。深度分析指出 2026 年遊戲行業進入「主動權之戰」，頭部廠商加速在爆款研發、AI 整合、出海布局等方向投入。</div>
+      <div class="news-meta">
+        <span class="news-company">全市場</span>
+        <span>2026-05-04 至 05-17 · GameRes</span>
+      </div>
+      <div class="pm-insight"><strong>【PM 觀點】</strong>一個月內 38 款遊戲同時測試，市場供給端競爭激烈。需關注競品的測試節奏與用戶反饋，及早掌握市場偏好變化方向，並在自家產品測試設計上做好差異化定位。</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">台灣市場：《星穹鐵道》三週年台中路跑 + 《傳說對決》GCS 春季賽</div>
+        <span class="cat-badge cat-出海">台灣</span>
+      </div>
+      <div class="news-content">《崩壞：星穹鐵道》三週年台中路跑活動「Run to 歡愉」5/2 盛大開幕。Garena《傳說對決》GCS 春季冠軍賽同期在台北內湖網球中心登場。NC《AION 2》台灣首場玩家見面會訂於 5/24 舉行。</div>
+      <div class="news-meta">
+        <span class="news-company">米哈遊 / Garena / NC</span>
+        <span>2026-05-02 起 · 巴哈姆特 GNN</span>
+      </div>
+      <div class="pm-insight"><strong>【PM 觀點】</strong>米哈遊與 Garena 積極在台灣舉辦線下活動，顯示台灣市場的社群黏著度與品牌曝光價值依然重要。台灣線下活動模式可複製至東南亞繁體中文市場。</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">騰訊未成年人保護 AI 化升級，管控機制強化人臉識別</div>
+        <span class="cat-badge cat-政策">政策</span>
+      </div>
+      <div class="news-content">騰訊遊戲啟動 AI 輔助家庭管控行動。現行政策：未成年人假日遊戲每日不超過 3 小時、平日不超過 1.5 小時，22 時至次日 8 時禁止服務，未滿 8 歲禁止付費。騰訊 AI 管控機制進一步強化人臉識別與行為分析能力。</div>
+      <div class="news-meta">
+        <span class="news-company">騰訊 / 國家新聞出版署</span>
+        <span>2026-05月 · 新華網</span>
+      </div>
+      <div class="pm-insight"><strong>【PM 觀點】</strong>未成年人保護政策持續收緊，但 AI 管控技術反而有助大廠合規並降低政策風險。對中小廠商而言，合規成本（人臉識別、家長監控後台）仍是門檻，大廠 AI 合規能力可能進一步擴大市場集中度。</div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 4: 關鍵趨勢 -->
+<div class="section">
+  <div class="section-title">📊 本期六大關鍵趨勢</div>
+  <ul class="trends-list">
+    <li><span class="trend-num">1</span>頭部集中化加速：二游市場超 20 款停運，資源向米哈遊、騰訊、網易等大廠集中，中小廠商生存空間大幅壓縮。</li>
+    <li><span class="trend-num">2</span>AI 技術全面滲透研發流程：中國遊戲研發 AI 應用率達 86%，美術環節已成標配，但高品質敘事創作仍是人類核心壁壘。</li>
+    <li><span class="trend-num">3</span>出海成長優於內需：國際市場收入增速（13%）明顯高於本土（6%），東南亞「分層運營」策略成主流共識。</li>
+    <li><span class="trend-num">4</span>多平台布局成標配：庫洛《鳴潮》完成 PC / 手機 / PS5 / macOS / Xbox 全覆蓋，頂級產品跨平台觸及成競爭必要條件。</li>
+    <li><span class="trend-num">5</span>發布會行銷節點化：網易 520 發布會集結 40+ 款產品，騰訊財報同期曝光長青遊戲數據，品牌聲量與資本市場聯動效應增強。</li>
+    <li><span class="trend-num">6</span>未成年人 AI 管控升級：政府政策持續收緊，騰訊等大廠以 AI 技術強化合規能力，未成年人保護成大廠差異化競爭點。</li>
+  </ul>
+</div>
+
+<!-- FOOTER -->
 <div class="footer">
-  資料來源：TapTap、巴哈姆特 GNN、九遊、GameRes 遊資網　|　GNO 自動化情報系統　© 2026
+  <div>GNO 遊戲產業競爭情報看板 · 自動排程任務 · 每日 09:30 執行</div>
+  <div style="margin-top:4px;">資料來源：TapTap / 九遊 / 巴哈姆特 GNN / GameRes / 17173 / 36氪 / 騰訊新聞 · 本報告由 AI 自動生成，建議結合官方公告交叉確認</div>
 </div>
 
-<script>
-// ── Data ──────────────────────────────────────────────────
-
-const data1 = [
-  {
-    "title": "超自然都市開放世界 RPG《異環》4 月 29 日多平台同步上市（PC/Android/iOS/PS5/Mac）",
-    "url": "https://gnn.gamer.com.tw/detail.php?sn=300913",
-    "source": "巴哈姆特",
-    "date": "2026-04-29",
-    "tags": ["#二次元", "#RPG", "#公測", "#雙平台", "#開放世界"],
-    "pm_insight": "《異環》預約突破 3500 萬，五平台同步公測創下同類新高，顯示大型開放世界二次元 RPG 的市場吸引力極強，對同期競品形成直接壓力。"
-  },
-  {
-    "title": "《明日方舟：終末地》1.2 版本「春晓时」更新上線，5 月 14 日新六星招募開啟",
-    "url": "https://www.taptap.cn/app/232326/topic",
-    "source": "TapTap",
-    "date": "2026-05-14",
-    "tags": ["#二次元", "#RPG", "#版本更新", "#卡牌抽卡", "#雙平台"],
-    "pm_insight": "《終末地》公測後持續版本疊加，5 月春季版本維持玩家熱度，驗證鷹角 IP 在長線營運上的可行性，對新進同類競品具高牆效應。"
-  },
-  {
-    "title": "《異環》公開前瞻特別節目情報回顧及「Play on!」宣傳影片，預告全平台公測 4 月 29 日開啟",
-    "url": "https://gnn.gamer.com.tw/detail.php?sn=303668",
-    "source": "巴哈姆特",
-    "date": "2026-04-28",
-    "tags": ["#二次元", "#RPG", "#公測", "#iOS", "#Android", "#PC"],
-    "pm_insight": "異環前瞻節目資訊量豐富，正式公測前造勢完整，顯示完美世界對此作的行銷資源投入規格達到旗艦級。"
-  },
-  {
-    "title": "GRAVITY 發表《RO 仙境傳說》2026 年全球規劃，重點介紹四大新遊戲內容",
-    "url": "https://gnn.gamer.com.tw/detail.php?sn=297049",
-    "source": "巴哈姆特",
-    "date": "2026-01-15",
-    "tags": ["#RPG", "#MMORPG", "#代理", "#預約", "#IP延伸"],
-    "pm_insight": "RO IP 在 2026 年推進四款新作，包含開放世界與現代 2D 風格，顯示老 IP 仍積極搶佔多元市場區間，代理商需評估授權拆分策略。"
-  },
-  {
-    "title": "《雷索纳斯》武林源記 PV 曝光，新乘員藍鵲兒立繪發表，5 月 13 日版本全面上線",
-    "url": "https://www.taptap.cn/moment/803007663955773905",
-    "source": "TapTap",
-    "date": "2026-05-13",
-    "tags": ["#二次元", "#RPG", "#版本更新", "#武俠", "#雙平台"],
-    "pm_insight": "《雷索纳斯》以武俠主題差異化切入二次元 RPG 市場，新角色持續推出維持抽卡經濟，對越南市場而言屬高觀察優先度的新興作品。"
-  },
-  {
-    "title": "《尘白禁区》5 月 8 日開放遊戲伺服器，限時活動「暖風拂境」同步開啟",
-    "url": "https://www.taptap.cn/app/222089/topic",
-    "source": "TapTap",
-    "date": "2026-05-08",
-    "tags": ["#二次元", "#射擊", "#版本更新", "#iOS", "#Android"],
-    "pm_insight": "《尘白禁区》射擊二次元賽道持續活躍，5 月伺服器開放配合限時活動，是評估同類型競品生命週期的重要參考指標。"
-  },
-  {
-    "title": "《明日方舟：終末地》預約突破 3500 萬，釋出公測預告片與實機展示片",
-    "url": "https://gnn.gamer.com.tw/detail.php?sn=298725",
-    "source": "巴哈姆特",
-    "date": "2026-01-20",
-    "tags": ["#二次元", "#RPG", "#公測", "#雙平台", "#高預約"],
-    "pm_insight": "3500 萬預約量創同期最高，驗證鷹角 IP 的跨平台動員能力，同類二次元 RPG 新作在同一時間窗口代理的難度大幅提升。"
-  },
-  {
-    "title": "《勝利女神：妮姬》公開 5 月開發者筆記，5 月安排限定角色敏特與普莉卡 Pick Up 招募",
-    "url": "https://gnn.gamer.com.tw/detail.php?sn=304777",
-    "source": "巴哈姆特",
-    "date": "2026-05-09",
-    "tags": ["#二次元", "#射擊", "#卡牌抽卡", "#版本更新", "#iOS", "#Android"],
-    "pm_insight": "《妮姬》持續透過開發者筆記維繫社群透明度，5 月雙限定角色策略顯示抽卡週期精算成熟，值得作為二次元射擊類新作代理評估的對標案例。"
-  },
-  {
-    "title": "《斗破蒼穹》卡牌 RPG 手遊登上 TapTap 下載榜，IP 改編抽卡養成受注目",
-    "url": "https://www.taptap.cn/app/804843",
-    "source": "TapTap",
-    "date": "2026-05-10",
-    "tags": ["#卡牌", "#RPG", "#IP改編", "#雙平台", "#Android", "#iOS"],
-    "pm_insight": "《斗破蒼穹》以知名小說 IP 切入卡牌 RPG，顯示陸系 IP 改編手遊仍具穩定受眾，適合評估為東南亞市場的潛在代理標的。"
-  },
-  {
-    "title": "2026 Q1 手遊排行榜：《明日方舟：終末地》封王，RO、生化危機等 10 大上榜名單",
-    "url": "https://www.hk01.com/%E9%81%8A%E6%88%B2%E5%8B%95%E6%BC%AB/60340926/",
-    "source": "巴哈姆特",
-    "date": "2026-04-05",
-    "tags": ["#排行榜", "#RPG", "#二次元", "#雙平台", "#市場概覽"],
-    "pm_insight": "Q1 排行榜揭示 2026 年手遊市場由二次元 RPG 主導，RO 與生化危機 IP 改編緊追，提供代理策略選品的宏觀市場基準。"
-  }
-];
-
-const data2 = [
-  {
-    "title": "《勝利女神：妮姬》5月14日版本更新——SSR新角色「敏特」登場，B-SIDE IDOL故事活動開啟",
-    "url": "https://forum.gamer.com.tw/C.php?bsn=36390&snA=21886",
-    "source": "巴哈姆特",
-    "date": "2026-05-14",
-    "tags": ["#版本更新", "#新角色", "#NIKKE"],
-    "pm_insight": "NIKKE持續以固定雙週更新節奏推新SSR，維持玩家抽卡消費動能，對同期競品的課金爭奪有直接壓力。"
-  },
-  {
-    "title": "《異環（NTE: Neverness to Everness）》4月29日正式公測上線（台港澳版），玩家輿情整體正面但批評抽卡成本過高",
-    "url": "https://tw.news.yahoo.com/%E3%80%8A%E7%95%B0%E7%92%B0%E3%80%8B-064243287.html",
-    "source": "巴哈姆特 / TapTap",
-    "date": "2026-04-29",
-    "tags": ["#OBT", "#正式上線", "#開放世界", "#輿情分析"],
-    "pm_insight": "異環以UE5全景光追開放世界入場，正式上線後輿情聚焦於抽卡性價比爭議，是觀察同類競品定價策略的重要參考案例。"
-  },
-  {
-    "title": "MMORPG《締造者：放逐之境》宣布台港澳上線，預告2026年5月開放CBT事前預約",
-    "url": "https://gnn.gamer.com.tw/detail.php?sn=304286",
-    "source": "巴哈姆特",
-    "date": "2026-05-01",
-    "tags": ["#CBT", "#封測", "#事前預約", "#MMORPG"],
-    "pm_insight": "韓系MMORPG新作進軍台港澳市場，5月開放CBT預約，值得追蹤其測試規模與玩家預約數以評估潛在市佔空間。"
-  },
-  {
-    "title": "《崩壞：星穹鐵道》4.2三週年版本「如是，眾生歡笑不已」正式上線，發放240萬份紀念冊",
-    "url": "https://hsr.hoyoverse.com/zh-tw/",
-    "source": "巴哈姆特 / TapTap",
-    "date": "2026-05-01",
-    "tags": ["#版本更新", "#周年慶", "#三周年", "#米哈遊"],
-    "pm_insight": "米哈遊崩鐵三周年以大規模回饋活動強化留存，高福利策略將對同期競品流失率造成虹吸效應。"
-  },
-  {
-    "title": "《夢幻西遊》手遊輕享服11周年慶 × 《仙劍奇俠傳三》聯動絕版外觀正式上線",
-    "url": "https://my.163.com/",
-    "source": "九遊",
-    "date": "2026-05-08",
-    "tags": ["#周年慶", "#聯動", "#版本更新", "#MMORPG"],
-    "pm_insight": "老牌MMORPG以IP聯動搭配周年慶雙重行銷，針對懷舊玩家喚回策略效果值得觀察，可作為輕享服商業模式分析案例。"
-  },
-  {
-    "title": "《異環》巴哈姆特討論板——亞服提早開服、兌換碼2026年5月13日到期提醒引發玩家討論",
-    "url": "https://forum.gamer.com.tw/C.php?bsn=80679&snA=1939",
-    "source": "巴哈姆特",
-    "date": "2026-05-13",
-    "tags": ["#OBT", "#版本更新", "#玩家輿情", "#亞服"],
-    "pm_insight": "亞服提前開服顯示異環運營端有積極搶占市場時程的跡象，兌換碼到期引發的社群提醒討論反映玩家活躍度仍在維持。"
-  },
-  {
-    "title": "《RO仙境傳說3》先鋒測試刪檔測試招募啟動，預計2026年全球同步上線",
-    "url": "https://applealmond.com/posts/287150",
-    "source": "巴哈姆特",
-    "date": "2026-05-10",
-    "tags": ["#封測", "#刪檔測試", "#CBT", "#先鋒測試", "#MMORPG"],
-    "pm_insight": "RO正統續作以刪檔先鋒測試蒐集全球玩家回饋，龐大IP號召力將吸引老玩家回歸，需持續追蹤測試規模與後續上線排程。"
-  },
-  {
-    "title": "《藍色星原：旅謠》韓版開啟第2輪CBT封測招募（截止4月24日），台版進度備受關注",
-    "url": "https://forum.gamer.com.tw/C.php?bsn=79865&snA=187",
-    "source": "巴哈姆特",
-    "date": "2026-04-24",
-    "tags": ["#CBT", "#封測", "#二測", "#二次元"],
-    "pm_insight": "韓版二測進行中，台版玩家在巴哈密切追蹤，若韓版測試反應正面，台港澳上線時程可能加速，值得列入下季新作觀測清單。"
-  },
-  {
-    "title": "《勇者鬥惡龍 破限亂鬥》2026年全球上線，CBT玩家招募進行中",
-    "url": "https://news.qoo-app.com/post/418994/dragonquest-smashgrow-coming-in-2026",
-    "source": "TapTap / QooApp",
-    "date": "2026-05-09",
-    "tags": ["#CBT", "#封測招募", "#大IP", "#JRPG"],
-    "pm_insight": "史克威爾艾尼克斯DQ系列手遊進行CBT招募，大IP手遊全球同步策略對台灣市場JRPG玩家具有高度吸引力，需關注正式上線檔期。"
-  },
-  {
-    "title": "TapTap 2026年4月國內開放世界遊戲大事件回顧：異環、代號Space等三強爭霸",
-    "url": "https://www.taptap.cn/moment/795047728773074427",
-    "source": "TapTap",
-    "date": "2026-05-01",
-    "tags": ["#OBT", "#版本更新", "#市場觀察", "#開放世界"],
-    "pm_insight": "TapTap社群總結開放世界三強格局，顯示該品類競爭白熱化，新進競品需在差異化玩法或IP號召力上具備明顯優勢才能突圍。"
-  }
-];
-
-const data3 = [
-  {
-    "title": "騰訊公佈2026年第一季業績：遊戲收入年增、國際市場成長13%",
-    "url": "https://www.prnewswire.com/apac/zh/news-releases/-302770781.html",
-    "source": "PR Newswire / 騰訊官方",
-    "date": "2026-05-14",
-    "tags": ["#騰訊", "#財報", "#全球化"],
-    "pm_insight": "騰訊國際遊戲收入增長13%，高於本土市場的6%，顯示海外擴張策略成效顯著，東南亞與歐美市場持續貢獻增量。"
-  },
-  {
-    "title": "騰訊Q1 2026業績：淨利潤580.93億元年增21%，《三角洲行動》等新作帶動流水成長",
-    "url": "https://finance.technews.tw/2026/05/14/tencent-announces-2026-first-quarter-results",
-    "source": "TechNews 科技新報",
-    "date": "2026-05-14",
-    "tags": ["#騰訊", "#財報", "#新專案"],
-    "pm_insight": "《三角洲行動》與《無畏契約：源能行動》被點名為季度流水成長驅動力，新IP商業化驗證成功，有利後續授權與海外版評估。"
-  },
-  {
-    "title": "中國5月版號下發：86款國產遊戲獲批，騰訊、網易均在列",
-    "url": "https://tw.stock.yahoo.com/news/%E4%B8%AD%E5%9C%8B5%E6%9C%88%E7%89%88%E8%99%9F/",
-    "source": "Yahoo 財經",
-    "date": "2026-05-01",
-    "tags": ["#版號", "#政策", "#騰訊", "#網易"],
-    "pm_insight": "版號每月穩定發放86款，頻率已正常化，對有版號待審遊戲的代理商與營運商而言是正面訊號，可提前規劃上線節點。"
-  },
-  {
-    "title": "米哈遊曝光5款開發中遊戲，涵蓋《崩壞》系列新作、UE5寫實奇幻與卡通射擊",
-    "url": "https://tw.news.yahoo.com/%E7%B1%B3%E5%93%88%E9%81%8A%E6%9B%9D%E5%85%895%E6%AC%BE/",
-    "source": "Yahoo 新聞",
-    "date": "2026-05-01",
-    "tags": ["#米哈遊", "#新專案", "#全球化"],
-    "pm_insight": "米哈遊同時推進多元品類，從二次元擴展至寫實奇幻與射擊，顯示其有意降低對單一IP依賴，搶佔更廣泛玩家族群。"
-  },
-  {
-    "title": "米哈遊3A新作《Varsapura》無預警曝光31分鐘預告，畫風大變兼作徵人廣告",
-    "url": "https://tw.news.yahoo.com/%E7%B1%B3%E5%93%88%E9%81%8A3a%E6%96%B0%E4%BD%9C%E3%80%8Avarsapura%E3%80%8B/",
-    "source": "Yahoo 新聞",
-    "date": "2026-05-01",
-    "tags": ["#米哈遊", "#新專案", "#3A"],
-    "pm_insight": "《Varsapura》以寫實畫風切入主機與PC市場，配合積極招募，顯示米哈遊正式啟動3A賽道布局，對同品類廠商形成競爭壓力。"
-  },
-  {
-    "title": "CAPCOM 2026財年財報：《惡靈古堡9》帶動銷量創歷史新高，營收達1,953億日圓",
-    "url": "https://gnn.gamer.com.tw/detail.php?sn=305002",
-    "source": "巴哈姆特 GNN",
-    "date": "2026-05-13",
-    "tags": ["#財報", "#全球化", "#主機遊戲", "#CAPCOM"],
-    "pm_insight": "CAPCOM連續創高的業績驗證「長青IP+舊作長銷」策略的可持續性，對同樣仰賴IP續作的中國大廠具參考意義。"
-  },
-  {
-    "title": "2026年5月4日至17日共38款遊戲開測——GameRes遊資網產業統計",
-    "url": "https://www.gameres.com/917463.html",
-    "source": "GameRes 遊資網",
-    "date": "2026-05-15",
-    "tags": ["#產業動態", "#新專案", "#手遊"],
-    "pm_insight": "兩週內38款新遊開測，顯示中國市場產品供給密度持續偏高，競爭白熱化，對引進新遊的代理商而言差異化定位更形重要。"
-  },
-  {
-    "title": "騰訊GDC 2026技術展示：AI動畫工具VISVISE、MagicDawn引擎光照、ACE AI反作弊系統亮相",
-    "url": "https://www.tencentgames.com/",
-    "source": "騰訊遊戲官方",
-    "date": "2026-05-01",
-    "tags": ["#騰訊", "#技術", "#AI", "#反作弊"],
-    "pm_insight": "騰訊將AI技術整合至動畫製作與反作弊等全流程，技術壁壘加深，中小型合作廠商可評估接入騰訊技術中台以降低自研成本。"
-  },
-  {
-    "title": "亞太手遊市場2026趨勢：東南亞消費意願高漲，印尼、馬來西亞、泰國玩家計劃增加消費",
-    "url": "https://games.gg/news/apac-mobile-gaming-market-2026/",
-    "source": "GAMES.GG",
-    "date": "2026-05-01",
-    "tags": ["#東南亞", "#全球化", "#手遊", "#市場趨勢"],
-    "pm_insight": "東南亞三國玩家消費意願達61–67%，遠高於成熟市場日本的19%，對有意布局東南亞的遊戲廠商是直接進場的強力市場訊號。"
-  },
-  {
-    "title": "騰訊湮滅之潮工作室新作《湮滅之潮》確認2026年秋季發售，買斷制單機定位",
-    "url": "https://egameinsider.com/p/jjzapedda7cc/",
-    "source": "遊戲內參",
-    "date": "2026-05-01",
-    "tags": ["#騰訊", "#新專案", "#單機遊戲"],
-    "pm_insight": "騰訊旗下工作室推出買斷制單機，顯示其嘗試多元商業模式以吸引非課金向玩家，對台港澳代理端評估引進買斷制產品具參考價值。"
-  }
-];
-
-// ── Render ────────────────────────────────────────────────
-
-function renderCards(data, gridId) {
-  const grid = document.getElementById(gridId);
-  if (!data || data.length === 0) {
-    grid.innerHTML = `
-      <div class="empty-state" style="grid-column:1/-1">
-        <div class="icon">⚠️</div>
-        本次未取得資料，請手動確認網站
-      </div>`;
-    return;
-  }
-  grid.innerHTML = data.map(item => `
-    <div class="card">
-      <div class="card-title">
-        <a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>
-      </div>
-      <div class="card-meta">
-        <span class="source-badge">${item.source}</span>
-        <span class="date-badge">📅 ${item.date}</span>
-      </div>
-      <div class="tags-row">
-        ${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-      </div>
-      <div class="insight-box">${item.pm_insight}</div>
-    </div>
-  `).join('');
-}
-
-// ── Tab Switch ─────────────────────────────────────────────
-
-function switchTab(tabId, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(tabId).classList.add('active');
-  btn.classList.add('active');
-}
-
-// ── Init ──────────────────────────────────────────────────
-
-renderCards(data1, 'grid1');
-renderCards(data2, 'grid2');
-renderCards(data3, 'grid3');
-</script>
 </body>
 </html>
