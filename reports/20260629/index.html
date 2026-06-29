@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VNG 遊戲產業趨勢情報看板 2026-06-29</title>
+<style>
+:root {
+  --bg: #f8fafc; --bg2: #ffffff; --bg3: #f1f5f9;
+  --border: #e2e8f0; --text: #1e293b; --text2: #64748b;
+  --accent: #2563eb; --red: #dc2626; --orange: #d97706;
+  --green: #16a34a; --purple: #7c3aed;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2); border-bottom: 2px solid var(--border);
+  padding: 12px 20px; display: flex; align-items: center; gap: 12px;
+}
+.site-header h1 { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.5px;
+  background: linear-gradient(90deg,#2563eb,#7c3aed); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
+.site-header .date-badge {
+  margin-left: auto; font-size: 12px; color: var(--text2);
+  background: var(--bg3); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border);
+}
+
+/* Stat Cards */
+.stat-cards { display: flex; gap: 12px; flex-wrap: wrap; max-width: 1400px; margin: 16px auto; padding: 0 16px; }
+.stat-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 20px; flex: 1; min-width: 140px;
+}
+.stat-card .sc-num { font-size: 2rem; font-weight: 800; line-height: 1; }
+.stat-card .sc-label { font-size: 11px; color: var(--text2); margin-top: 4px; }
+
+/* Chip Nav */
+.chip-nav {
+  position: sticky; top: 53px; z-index: 90;
+  background: var(--bg); border-bottom: 1px solid var(--border);
+  padding: 10px 16px; display: flex; gap: 8px; flex-wrap: wrap;
+  max-width: 1400px; margin: 0 auto 20px;
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 14px; border-radius: 999px; border: 1.5px solid var(--border);
+  background: var(--bg2); color: var(--text2); font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all 0.18s; user-select: none; white-space: nowrap;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; box-shadow: 0 2px 8px rgba(37,99,235,0.25); }
+.chip.chip-all.active { background: #1e293b; border-color: #1e293b; }
+.section.hidden { display: none; }
+
+/* Section */
+.section { max-width: 1400px; margin: 0 auto 30px; padding: 0 16px; }
+.section-title {
+  font-size: 1rem; font-weight: 800; padding: 10px 0 12px;
+  border-bottom: 2px solid var(--border); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* Cards */
+.card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+.card-title { font-size: 0.92rem; font-weight: 700; margin-bottom: 6px; }
+.card-meta { font-size: 11px; color: var(--text2); display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.card-body { font-size: 13px; line-height: 1.6; color: #334155; }
+.pm-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 12px; margin-top: 8px; font-size: 12px; color: #1d4ed8; }
+.pm-label { font-weight: 700; }
+
+/* Alert */
+.alert-card { border-left: 4px solid var(--red); }
+.alert-card.medium { border-left-color: var(--orange); }
+.alert-card.low { border-left-color: var(--green); }
+.threat-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-left: 6px; }
+.threat-high { background: rgba(220,38,38,0.1); color: #b91c1c; border: 1px solid rgba(220,38,38,0.3); }
+.threat-medium { background: rgba(217,119,6,0.1); color: #92400e; border: 1px solid rgba(217,119,6,0.3); }
+.threat-low { background: rgba(22,163,74,0.1); color: #166534; border: 1px solid rgba(22,163,74,0.3); }
+
+/* Table */
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 900px; font-size: 12px; }
+th { background: var(--bg3); padding: 8px 10px; text-align: left; font-weight: 700;
+  border-bottom: 2px solid var(--border); white-space: nowrap; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:hover td { background: #f8fafc; }
+.src-row-17173 { background: rgba(217,119,6,0.06); }
+.src-row-9game { background: rgba(37,99,235,0.05); }
+.src-row-gameres { background: rgba(124,58,237,0.05); }
+.src-header { text-align: left; padding: 8px 10px; font-weight: 800; font-size: 12px; }
+.src-header-17173 { background: rgba(217,119,6,0.15); color: #92400e; }
+.src-header-9game { background: rgba(37,99,235,0.12); color: #1d4ed8; }
+.src-header-gameres { background: rgba(124,58,237,0.12); color: #6d28d9; }
+
+/* Status badges */
+.status-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+.status-live { background: rgba(220,38,38,0.1); color: #b91c1c; border: 1px solid rgba(220,38,38,0.3); }
+.status-today { background: rgba(217,119,6,0.1); color: #92400e; border: 1px solid rgba(217,119,6,0.3); }
+.status-soon { background: rgba(37,99,235,0.1); color: #1d4ed8; border: 1px solid rgba(37,99,235,0.3); }
+
+/* Test type */
+.test-del-pay { color: var(--orange); font-weight: 700; }
+.test-del-free { color: var(--green); font-weight: 700; }
+.test-no-del { color: var(--red); font-weight: 700; }
+.test-limited { color: var(--purple); font-weight: 700; }
+
+/* Market badges */
+.mkt { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; margin-left: 5px; vertical-align: middle; white-space: nowrap; }
+.mkt-cn { background: rgba(220,38,38,0.09); color: #b91c1c; border: 1px solid rgba(220,38,38,0.28); }
+.mkt-global { background: rgba(22,163,74,0.09); color: #15803d; border: 1px solid rgba(22,163,74,0.28); }
+.mkt-tw { background: rgba(37,99,235,0.09); color: #1d4ed8; border: 1px solid rgba(37,99,235,0.28); }
+
+/* Game grid */
+.game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.game-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+.game-name { font-weight: 700; font-size: 0.92rem; }
+.game-info { font-size: 11px; color: var(--text2); margin-top: 6px; display: grid; grid-template-columns: auto 1fr; gap: 3px 8px; }
+.game-info dt { font-weight: 600; color: var(--text); }
+.game-note { font-size: 11px; color: #475569; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+
+/* Gantt */
+.gantt-bar { height: 8px; border-radius: 4px; min-width: 4px; display: inline-block; }
+.gantt-live { background: var(--red); }
+.gantt-soon { background: var(--accent); }
+.gantt-past { background: var(--green); }
+
+/* Industry cards grid */
+.industry-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 14px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .stat-cards { gap: 8px; }
+  .stat-card { min-width: 100px; padding: 10px 14px; }
+  .industry-grid { grid-template-columns: 1fr; }
+  .game-grid { grid-template-columns: 1fr; }
+}
+
+/* Category tag */
+.cat-tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 4px; background: var(--bg3); border: 1px solid var(--border); color: var(--text2); margin-left: 6px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <h1>🎮 VNG 遊戲產業趨勢情報看板</h1>
+  <span class="date-badge">📅 2026-06-29 週一 | 回溯 7 天：2026-06-22</span>
+</header>
+
+<!-- STAT CARDS -->
+<div class="stat-cards">
+  <div class="stat-card">
+    <div class="sc-num" style="color:var(--accent)">27</div>
+    <div class="sc-label">📡 本週開測遊戲數<br>（17173 + 九遊 + GameRes）</div>
+  </div>
+  <div class="stat-card">
+    <div class="sc-num" style="color:var(--green)">28</div>
+    <div class="sc-label">🎯 新遊上線 / 預約<br>（台港澳 + 陸服 + 全球）</div>
+  </div>
+  <div class="stat-card">
+    <div class="sc-num" style="color:var(--red)">4</div>
+    <div class="sc-label">🚨 高威脅競品動態<br>（本週新增）</div>
+  </div>
+  <div class="stat-card">
+    <div class="sc-num" style="color:var(--orange)">15</div>
+    <div class="sc-label">🏢 產業趨勢新聞<br>（大廠 + 政策 + 全球化）</div>
+  </div>
+  <div class="stat-card">
+    <div class="sc-num" style="color:var(--purple)">3</div>
+    <div class="sc-label">🔥 重點 IP 改編測試<br>（詭秘之主 / 斗羅 / 天堂2）</div>
+  </div>
+</div>
+
+<!-- CHIP NAV -->
+<div class="chip-nav" id="chipNav">
+  <button class="chip chip-all active" onclick="filterSec('all')">📋 全部顯示</button>
+  <button class="chip" onclick="filterSec('alert')">🚨 緊急預警</button>
+  <button class="chip" onclick="filterSec('timeline')">📅 開測時程</button>
+  <button class="chip" onclick="filterSec('newgames')">🎯 新遊上線</button>
+  <button class="chip" onclick="filterSec('industry')">🏢 產業趨勢</button>
+</div>
+
+
+<!-- ===== SECTION 1: 緊急預警 ===== -->
+<div class="section" data-sec="alert">
+  <div class="section-title">🚨 緊急預警 — 本週高威脅競品動態</div>
+
+  <div class="card alert-card">
+    <div class="card-title">⚠️ 中國遊戲出海寫入「十五五」國家規劃，競爭從商業升格為國家戰略
+      <span class="threat-badge threat-high">🔴 高威脅</span>
+    </div>
+    <div class="card-meta">
+      <span>📅 2026-03 生效</span><span>🏷 政策 / 全球化</span><span>來源：Google / 17173</span>
+    </div>
+    <div class="card-body">中國「十五五」五年規劃首次將遊戲出海納入國家級文化出口戰略，騰訊、網易、米哈遊等大廠旗下《原神》《明日方舟》獲重點扶持，政策補貼與海外推廣資源向頭部廠商集中傾斜。</div>
+    <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>VNG 面對的不再只是商業對手，而是有國家資源背書的競爭者。需重新評估東南亞市場的防守策略，尋找本土化差異優勢（語言、文化、在地 IP）。</div>
+  </div>
+
+  <div class="card alert-card">
+    <div class="card-title">⚠️ 中國未成年保護「全網掃臉」推動廠商加速出海東南亞
+      <span class="threat-badge threat-high">🔴 高威脅</span>
+    </div>
+    <div class="card-meta">
+      <span>📅 2026 持續執行</span><span>🏷 政策</span><span>來源：Google</span>
+    </div>
+    <div class="card-body">中國實施「全網實名動態掃臉」，未成年人每週僅 3 小時遊戲時間，騰訊、網易均對接公安部身份數據庫觸發二次人臉驗證。國內增長空間受限，推動大廠更積極佈局無此限制的海外市場。</div>
+    <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>中國廠商「逃出限制」的出海動能將持續增強，東南亞（越南/泰國/印尼）成為最優先佈局市場。VNG 應把握本土化優勢窗口期，在競品大規模進入前鞏固核心用戶群。</div>
+  </div>
+
+  <div class="card alert-card medium">
+    <div class="card-title">⚠️ 米哈遊《Varsapura 雨之都》UE5 開放世界預計 2027-2028 年發售
+      <span class="threat-badge threat-high">🔴 高威脅</span>
+    </div>
+    <div class="card-meta">
+      <span>📅 預計 2027+</span><span>🏷 大廠動向</span><span>來源：Google / 巴哈姆特</span>
+    </div>
+    <div class="card-body">米哈遊創辦人蔡浩宇主導開發次世代《Varsapura》，31 分鐘 UE5 實機影片顯示寫實都市心理懸疑風格，並導入 AI NPC 生成對話，突破傳統二次元定位擴大受眾。首款 UE5 引擎作品，技術規格將拉高行業門檻。</div>
+    <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>若 2027-2028 年推出，將對所有開放世界手遊形成降維打擊。VNG 需提前布局差異化競品，AI NPC 在越南文應用的本地化優勢是重要切入點。</div>
+  </div>
+
+  <div class="card alert-card medium">
+    <div class="card-title">⚠️ 東南亞 Q1 MLBB（沐瞳/字節）稱霸，短劇應用爆發搶占用戶時間
+      <span class="threat-badge threat-high">🔴 高威脅</span>
+    </div>
+    <div class="card-meta">
+      <span>📅 2026 Q1 報告</span><span>🏷 市場 / 全球化</span><span>來源：Google</span>
+    </div>
+    <div class="card-body">東南亞 Q1 手遊市場，沐瞳（字節跳動旗下）《決勝巔峰》重返雙榜第一，霸榜地位仍未動搖。同期短劇應用下載量全面爆發，東南亞成全球最大短劇下載市場，「輕量化」娛樂形式正在搶占重度手遊時間。</div>
+    <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>MOBA 賽道 VNG 正面競爭難度極高。短劇爆發提示新娛樂形式正在搶占玩家時間，建議評估是否切入互動影視 / 短劇賽道作為補充業務線。</div>
+  </div>
+
+  <div class="card alert-card medium">
+    <div class="card-title">⚠️ AI 滲透率達 20% 新作，中國遊戲開發技術門檻快速拉高
+      <span class="threat-badge threat-high">🔴 高威脅</span>
+    </div>
+    <div class="card-meta">
+      <span>📅 2026-06</span><span>🏷 技術</span><span>來源：Google / TapTap</span>
+    </div>
+    <div class="card-body">2026 年業界報告指出，中國新上市遊戲中約 20% 已導入生成式 AI 技術（AI NPC 對話、動態劇情生成、AI 美術輔助），ChinaJoy 2026 主題「與 AI 同遊」首設前沿科技展區，AI 生成內容正從輔助工具升格為核心競爭力。</div>
+    <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>20% 滲透率在一年內很可能倍增。VNG 若未啟動 AI 輔助開發流程，開發成本與品質差距將快速拉大。優先在美術生成與越南文本地化翻譯兩個場景導入 AI 工具。</div>
+  </div>
+
+  <div class="card alert-card medium">
+    <div class="card-title">🔵 《詭秘之主》UE5 手遊「灰霧測試」三端同步（快手研發），為本週最值得追蹤的競品
+      <span class="threat-badge threat-medium">🟡 中威脅</span>
+    </div>
+    <div class="card-meta">
+      <span>📅 2026-06-26</span><span>🏷 大廠動向 / 競品</span><span>來源：TapTap / 巴哈姆特</span>
+    </div>
+    <div class="card-body">快手遊戲研發《詭秘之主》於 6/26 開啟首次三端限量刪檔測試，國內首款 UE5 歐式古風神秘學 MMORPG，改編自高分小說 IP，千人同屏對戰為技術突破。同步存在另一款祖龍研發的《詭秘之主：愚者》卡牌版在 TapTap 預約榜排名第五（9.4 分）。</div>
+    <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>同一 IP 同時有兩款不同廠商的遊戲搶跑（MMORPG + 卡牌），顯示詭秘之主 IP 熱度極高。若出海版登場東南亞，將對 VNG 代理的奇幻 MMORPG 品類形成直接競爭。</div>
+  </div>
+
+</div>
+
+<!-- ===== SECTION 2: 開測時程 ===== -->
+<div class="section" data-sec="timeline">
+  <div class="section-title">📅 開測時程表 — 2026-06-22 至今（含即將開測）</div>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>遊戲名稱</th>
+        <th>測試名稱</th>
+        <th>測試性質</th>
+        <th>平台</th>
+        <th>開測日期</th>
+        <th>狀態</th>
+        <th>運營商</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <!-- 17173 源 -->
+    <tr>
+      <td colspan="7" class="src-header src-header-17173">
+        📡 17173 手遊開測表（2026-06-29 抓取）— 上週 + 今日 + 即將開測（>= 2026-06-22）
+      </td>
+    </tr>
+
+    <tr class="src-row-17173">
+      <td><strong>傳奇世界無雙</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>公測</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-26</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>上海數龍科技</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>黑色沙漠</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>黑星覺醒</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-24</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>Pearlabys</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>戰雙帕彌什</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>孑念空行</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-25</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>庫洛遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>戰雙帕彌什</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>長路歸航</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-24</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>庫洛遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>地下城與勇士</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>千海天</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>Android</td>
+      <td>2026-06-25</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>NEXON Company</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>第五人格</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>熾夏海聲</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-25</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>網易遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>蛋仔派對</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>蛋仔四週年慶</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-26</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>網易遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>恋與深空</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>萬籟俱起</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-07-09</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>疊紙遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>王者榮耀</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>S44 新賽季</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-28</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>騰訊遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>金鏟鏟之戰</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>蓮華溫泉</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-25 / 07-02</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>騰訊遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>率土之濱</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>心愿武將 / 多服</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-24 / 07-03</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>網易遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>三國志·戰略版</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>雙雄逐金 / 爭洛陽</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-27 / 07-01</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>簡悅科技</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>九牧之野</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>半周年版本</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-24</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>雷霆遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>大唐無雙手遊</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>凌空問鼎</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-23</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>網易遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>誅仙手遊</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>風起青羅</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-25</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>完美世界</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>熱血傳奇手機版</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>黃金回流季</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-25</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>騰訊遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>小冰冰傳奇</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>大地之靈·激情綠茵</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-26</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>龍圖遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>賽爾號巔峰之戰</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>新的起點</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-26</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>淘米網絡</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>命運：群星</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>覺醒賽季</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-25</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>網易遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>尋仙</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>仙靈島 / 尋仙問道</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-23 / 06-26</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>互聯網</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>三國殺</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>佈將為子</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-27</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>邊鋒網絡</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>戰雙帕彌什</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>孑念空行（下半段）</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-07-17</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>庫洛遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>第五人格</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>墜入盛夏</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-07-01</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>網易遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>龍魂旅人</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>時之隙新賽季</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-07-03</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>上海紫舜</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>王者榮耀</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>王者日常番第六季</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-07-23</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>騰訊遊戲</td>
+    </tr>
+    <tr class="src-row-17173">
+      <td><strong>蛋仔派對</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>S32 驚魂夜特別派對季</td>
+      <td><span class="test-no-del">不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-08-01</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>網易遊戲</td>
+    </tr>
+
+    <!-- 九遊源 -->
+    <tr>
+      <td colspan="7" class="src-header src-header-9game">
+        📡 九遊開測表即時補充（2026-06-29 抓取）— 全新遊戲產品
+      </td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>不休的勇士</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>首發上線</td>
+      <td><span class="test-no-del">公測上線</span></td>
+      <td>Android</td>
+      <td>2026-06-29</td>
+      <td><span class="status-badge status-today">⚡ 今日開測</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>龍城軍團</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>計費刪檔內測</td>
+      <td><span class="test-del-pay">🟠 刪檔計費</span></td>
+      <td>Android</td>
+      <td>2026-06-29</td>
+      <td><span class="status-badge status-today">⚡ 今日開測</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>三國大冒險</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>首發（送貂蟬）</td>
+      <td><span class="test-no-del">公測上線</span></td>
+      <td>Android</td>
+      <td>2026-06-30</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>天堂2：盟約</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>首發上線</td>
+      <td><span class="test-no-del">公測上線</span></td>
+      <td>Android</td>
+      <td>2026-06-30</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>騰訊遊戲</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>仙逆：戰天道</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>首發（正版授權肉鴿塔防）</td>
+      <td><span class="test-no-del">公測上線</span></td>
+      <td>Android</td>
+      <td>2026-06-30</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>史萊姆城堡</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>不刪檔內測</td>
+      <td><span class="test-del-free">🟢 不刪檔測試</span></td>
+      <td>Android</td>
+      <td>2026-06-30</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>斗羅大陸傳承</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>首發（送魂師）</td>
+      <td><span class="test-no-del">公測上線</span></td>
+      <td>Android</td>
+      <td>2026-06-30</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>高能探寶團</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>首發上線</td>
+      <td><span class="test-no-del">公測上線</span></td>
+      <td>Android</td>
+      <td>2026-07-01</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>百味食光</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>首發上線</td>
+      <td><span class="test-no-del">公測上線</span></td>
+      <td>Android</td>
+      <td>2026-07-01</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>永恆龍族</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>首發（龍族歸來）</td>
+      <td><span class="test-no-del">公測上線</span></td>
+      <td>Android</td>
+      <td>2026-07-01</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>阿比斯</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>計費刪檔內測</td>
+      <td><span class="test-del-pay">🟠 刪檔計費</span></td>
+      <td>Android</td>
+      <td>2026-07-02</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>失控進化</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>首發上線</td>
+      <td><span class="test-no-del">公測上線</span></td>
+      <td>雙端</td>
+      <td>2026-07-09</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="src-row-9game">
+      <td><strong>盜夢2</strong><span class="mkt mkt-cn">🇨🇳 陸服</span></td>
+      <td>首發上線</td>
+      <td><span class="test-no-del">公測上線</span></td>
+      <td>Android</td>
+      <td>2026-07-10</td>
+      <td><span class="status-badge status-soon">🔜 即將開測</span></td>
+      <td>—</td>
+    </tr>
+
+    <!-- GameRes BBS 源 -->
+    <tr>
+      <td colspan="7" class="src-header src-header-gameres">
+        🎮 GameRes 玩匠週報補充（6/22–6/28，共 27 款）— 來源：<a href="https://bbs.gameres.com/thread_917751_1_1.html" target="_blank">bbs.gameres.com/thread_917751</a>
+      </td>
+    </tr>
+    <tr class="src-row-gameres">
+      <td><strong>天堂2：盟約</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><small>MMORPG / 騰訊發行</small></td>
+      <td>首發公測</td>
+      <td><span class="test-no-del">公測不刪檔</span></td>
+      <td>雙端</td>
+      <td>2026-06-24</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>騰訊遊戲</td>
+    </tr>
+    <tr class="src-row-gameres">
+      <td><strong>弧光獵人</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><small>射擊冒險 PVPVE / 騰訊代理</small></td>
+      <td>限量刪檔不付費測試</td>
+      <td><span class="test-del-free">🟢 刪檔不計費</span></td>
+      <td>PC</td>
+      <td>2026-06-24</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>騰訊遊戲</td>
+    </tr>
+    <tr class="src-row-gameres">
+      <td><strong>戰術小隊：破曉攻勢</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><small>硬核拟真戰術射擊 / 百人大戰場</small></td>
+      <td>PC 限量刪檔測試</td>
+      <td><span class="test-del-free">🟢 刪檔不計費</span></td>
+      <td>PC</td>
+      <td>2026-06-26</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>騰訊遊戲</td>
+    </tr>
+    <tr class="src-row-gameres">
+      <td><strong>詭秘之主</strong><span class="mkt mkt-cn">🇨🇳 陸服</span><br><small>UE5 歐式神秘學 MMORPG / 快手研發</small></td>
+      <td>灰霧測試（三端限量刪檔）</td>
+      <td><span class="test-del-free">🟢 刪檔不計費</span></td>
+      <td>iOS / Android / PC</td>
+      <td>2026-06-26</td>
+      <td><span class="status-badge status-live">✅ 已開測</span></td>
+      <td>快手遊戲</td>
+    </tr>
+
+    </tbody>
+  </table>
+  </div>
+
+  <div style="margin-top:12px; padding:10px 14px; background:#fff7ed; border:1px solid #fed7aa; border-radius:8px; font-size:12px; color:#92400e;">
+    ⚠️ <strong>分析摘要：</strong>本週 27 款開測中，騰訊獨自佈局射擊（《弧光獵人》《戰術小隊》）+ MMORPG（《天堂2》）三條線。UE5 引擎 MMORPG《詭秘之主》同一 IP 雙廠商搶跑值得高度關注。SLG 品類（三國志·戰略版、率土之濱、九牧之野）集中開測，暑期旺季搶檔意圖明顯，本週開測總量較上週（14 款）激增近一倍。
+  </div>
+</div>
+
+<!-- ===== SECTION 3: 新遊上線 ===== -->
+<div class="section" data-sec="newgames">
+  <div class="section-title">🎯 新遊上線與預約動態 — 2026-06-22 至 2026-06-29</div>
+
+  <h3 style="font-size:0.85rem;color:var(--text2);margin-bottom:12px;font-weight:600;">🇹🇼 台港澳區 / 🌏 全球版 重點新遊</h3>
+  <div class="game-grid">
+
+    <div class="game-card">
+      <div class="game-name">JUMP 全明星亂鬥<span class="mkt mkt-tw">🇹🇼 台港澳</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>動作 / 格鬥大亂鬥</dd>
+        <dt>上線日</dt><dd>2026-06-24 ✅</dd>
+        <dt>平台</dt><dd>iOS / Android</dd>
+        <dt>發行</dt><dd>Tadpole Entertainment</dd>
+      </dl>
+      <div class="game-note">集英社九大 IP（航海王、火影、七龍珠、鬼滅、咒術迴戰等），台港澳同步，事前預約破 18 萬</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-name">RO 仙境傳說 3 啟燃測試<span class="mkt mkt-tw">🇹🇼 台港澳</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>MMORPG</dd>
+        <dt>測試日</dt><dd>2026-06-26 ⚡</dd>
+        <dt>平台</dt><dd>iOS / Android</dd>
+        <dt>發行</dt><dd>Gravity Game Vision</dd>
+      </dl>
+      <div class="game-note">仙境傳說正統續作「啟燃測試」，限量技術測試，電玩瘋曝光實機影片</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-name">瑪奇 Mobile<span class="mkt mkt-tw">🇹🇼 台港澳</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>MMORPG</dd>
+        <dt>預定上線</dt><dd>2026-07-22 🔜</dd>
+        <dt>平台</dt><dd>iOS / Android / PC</dd>
+        <dt>發行</dt><dd>NEXON</dd>
+      </dl>
+      <div class="game-note">6/24 起開放事前預約，正式上市 7/22，跨平台互通</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-name">跑跑薑餅人：經典版<span class="mkt mkt-global">🌏 全球</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>跑酷 / 休閒</dd>
+        <dt>上線日</dt><dd>2026-06-25 ✅</dd>
+        <dt>平台</dt><dd>iOS / Android</dd>
+        <dt>發行</dt><dd>Devsisters</dd>
+      </dl>
+      <div class="game-note">正式上線 App Store、Google Play，回歸薑餅人系列原點玩法</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-name">白銀之城<span class="mkt mkt-global">🌏 全球</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>奇幻偵探 ARPG</dd>
+        <dt>測試日</dt><dd>2026-06-26 ⚡</dd>
+        <dt>平台</dt><dd>iOS / Android</dd>
+        <dt>發行</dt><dd>Elementa（新加坡）</dd>
+      </dl>
+      <div class="game-note">TapTap 預約榜第二，「二分法測試」招募開啟，不付費刪檔測試，玩家扮演偵探探索白銀城</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-name">崩壞：因緣精靈<span class="mkt mkt-global">🌏 全球</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>精靈養成策略</dd>
+        <dt>測試日</dt><dd>2026-06-23 ⚡</dd>
+        <dt>平台</dt><dd>iOS / Android / PC</dd>
+        <dt>發行</dt><dd>HoYoverse</dd>
+      </dl>
+      <div class="game-note">崩壞系列首款精靈養成策略遊戲，「進化測試」招募開放，TapTap 預約榜第七</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-name">MIRESI：看不見的未來<span class="mkt mkt-global">🌏 全球</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>時空旅行 RPG</dd>
+        <dt>登錄日</dt><dd>2026-06-24 ⚡</dd>
+        <dt>平台</dt><dd>iOS / Android</dd>
+        <dt>發行</dt><dd>Smilegate Megaport</dd>
+      </dl>
+      <div class="game-note">Anime Expo 2026 參展作品，全球事前登錄開啟，預計 2026 年內上線</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-name">我的英雄學院：UNITED SURVIVAL<span class="mkt mkt-global">🌏 全球</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>動作 / 生存</dd>
+        <dt>登錄日</dt><dd>2026-06-25 ⚡</dd>
+        <dt>平台</dt><dd>iOS / Android</dd>
+        <dt>發行</dt><dd>Klab / 動畫授權</dd>
+      </dl>
+      <div class="game-note">全球事前登錄開啟，預計 2026 年內上市，正版動畫改編 Battle Royale 風格</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-name">命運骰很大<span class="mkt mkt-tw">🇹🇼 台港澳</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>商隊 Roguelike 策略</dd>
+        <dt>上線日</dt><dd>2026-06-24 ✅</dd>
+        <dt>平台</dt><dd>iOS / Android</dd>
+        <dt>發行</dt><dd>樂意傳播（台灣自研）</dd>
+      </dl>
+      <div class="game-note">台灣本土開發，商隊經營 × 骰子戰鬥 Roguelike，雙平台正式上線</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-name">從前有條街<span class="mkt mkt-tw">🇹🇼 台港澳</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>模擬經營 / 古風</dd>
+        <dt>上線日</dt><dd>2026-06-26 ✅</dd>
+        <dt>平台</dt><dd>iOS / Android</dd>
+        <dt>發行</dt><dd>—</dd>
+      </dl>
+      <div class="game-note">古代街市經營手機遊戲，雙平台正式上市，預約獎勵含限定名士「殺豬妹」</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-name">搞鬼 M<span class="mkt mkt-tw">🇹🇼 台港澳</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>橫向 2D 卷軸 MMORPG</dd>
+        <dt>預約開啟</dt><dd>2026-06-24</dd>
+        <dt>平台</dt><dd>iOS / Android</dd>
+        <dt>發行</dt><dd>掘夢網代理</dd>
+      </dl>
+      <div class="game-note">改編自《搞鬼 Online》，完成預約送永久裝扮「青殭屍服套裝」及 50 抽</div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-name">狂化啟示錄<span class="mkt mkt-tw">🇹🇼 台港澳</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>SLG</dd>
+        <dt>預約開啟</dt><dd>2026-06-26</dd>
+        <dt>平台</dt><dd>iOS / Android</dd>
+        <dt>發行</dt><dd>宏胤數位娛樂</dd>
+      </dl>
+      <div class="game-note">雙平台預註冊開放，福瑞星球被毒霧入侵的 SLG 題材</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:0.85rem;color:var(--text2);margin:20px 0 12px;font-weight:600;">🇨🇳 陸服重點新遊（TapTap 榜 / 九遊）</h3>
+  <div class="game-grid">
+    <div class="game-card">
+      <div class="game-name">真・三國無雙 天下<span class="mkt mkt-cn">🇨🇳 陸服</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>ARPG</dd>
+        <dt>上線日</dt><dd>2026-06-24 ✅</dd>
+        <dt>平台</dt><dd>Android / PC</dd>
+        <dt>發行</dt><dd>盛天網絡（光榮授權）</dd>
+      </dl>
+      <div class="game-note">首發公測，連續 14 天簽到可得 2260 抽，TapTap 新品榜前三</div>
+    </div>
+    <div class="game-card">
+      <div class="game-name">詭秘之主<span class="mkt mkt-cn">🇨🇳 陸服</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>UE5 MMORPG</dd>
+        <dt>測試日</dt><dd>2026-06-26 ⚡</dd>
+        <dt>平台</dt><dd>iOS / Android / PC</dd>
+        <dt>發行</dt><dd>快手遊戲</dd>
+      </dl>
+      <div class="game-note">首次三端灰霧測試，國內首款 UE5 歐式古風神秘學 MMORPG，千人同屏</div>
+    </div>
+    <div class="game-card">
+      <div class="game-name">詭秘之主：愚者<span class="mkt mkt-cn">🇨🇳 陸服</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>卡牌 / 二次元</dd>
+        <dt>狀態</dt><dd>TapTap 預約榜第5</dd>
+        <dt>平台</dt><dd>雙端 / PC</dd>
+        <dt>發行</dt><dd>祖龍科技</dd>
+      </dl>
+      <div class="game-note">TapTap 評分 9.4，同 IP 兩款遊戲同時競爭，卡牌向</div>
+    </div>
+    <div class="game-card">
+      <div class="game-name">代號：神不言<span class="mkt mkt-cn">🇨🇳 陸服</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>戀愛 / 乙女</dd>
+        <dt>狀態</dt><dd>TapTap 預約榜第1</dd>
+        <dt>平台</dt><dd>iOS / Android / PC</dd>
+        <dt>發行</dt><dd>—</dd>
+      </dl>
+      <div class="game-note">TapTap 評分 9.0，女性向戀愛乙女，預約榜榜首</div>
+    </div>
+    <div class="game-card">
+      <div class="game-name">怨樓<span class="mkt mkt-cn">🇨🇳 陸服</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>MMORPG / 懸疑</dd>
+        <dt>上線日</dt><dd>2026-06-26 ✅</dd>
+        <dt>平台</dt><dd>Android</dd>
+        <dt>發行</dt><dd>—</dd>
+      </dl>
+      <div class="game-note">TapTap 新品榜第二，評分 9.3 高分，3 天前首發</div>
+    </div>
+    <div class="game-card">
+      <div class="game-name">失控進化<span class="mkt mkt-cn">🇨🇳 陸服</span></div>
+      <dl class="game-info">
+        <dt>類型</dt><dd>射擊</dd>
+        <dt>上線日</dt><dd>2026-07-09 🔜</dd>
+        <dt>平台</dt><dd>iOS / Android / PC</dd>
+        <dt>發行</dt><dd>—</dd>
+      </dl>
+      <div class="game-note">TapTap 預約榜第四，九遊預約榜第三，7/9 首發</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: 產業趨勢 ===== -->
+<div class="section" data-sec="industry">
+  <div class="section-title">🏢 公司計畫與產業趨勢 — 2026-06-22 至今</div>
+  <div class="industry-grid">
+
+    <div class="card alert-card">
+      <div class="card-title">遊戲出海寫入中國「十五五」國家規劃，首次升格為國家文化戰略
+        <span class="cat-tag">政策</span><span class="threat-badge threat-high">🔴 高</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-03-16</span><span>🏢 騰訊/網易/米哈遊</span><span>來源：Google</span></div>
+      <div class="card-body">「十五五」五年規劃首次將遊戲出海納入國家級文化出口戰略，商務部 5 月公布重點扶持名單，騰訊、網易、米哈遊均入選，《原神》《明日方舟》獲政策背書。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>競爭從商業層級升格為國家戰略，VNG 需尋找本土化差異優勢（語言/文化/在地 IP）作為防守核心。</div>
+    </div>
+
+    <div class="card alert-card medium">
+      <div class="card-title">米哈遊《Varsapura 雨之都》公開 31 分鐘 UE5 實機，導入 AI NPC 生成對話
+        <span class="cat-tag">大廠動向</span><span class="threat-badge threat-high">🔴 高</span>
+      </div>
+      <div class="card-meta"><span>📅 2025-11-21 曝光</span><span>🏢 米哈遊</span><span>來源：Google / 巴哈姆特</span></div>
+      <div class="card-body">次世代開放世界 UE5 作品，風格從二次元轉向寫實都市心理懸疑，AI NPC 可動態生成對話，預計 2027 年後發售。蔡浩宇主導，為米哈遊首款 UE5 引擎作品。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>發售後將對所有開放世界手遊形成降維打擊。建議提前布局越南文 AI NPC 差異化優勢，以在地語言體驗對抗。</div>
+    </div>
+
+    <div class="card alert-card medium">
+      <div class="card-title">中國未成年「全網動態掃臉」升級，推動大廠加速東南亞出海
+        <span class="cat-tag">政策</span><span class="threat-badge threat-high">🔴 高</span>
+      </div>
+      <div class="card-meta"><span>📅 2026 持續</span><span>🏢 騰訊/網易</span><span>來源：Google</span></div>
+      <div class="card-body">中國實施全網實名動態掃臉，未成年每週僅 3 小時，大廠對接公安部人臉數據庫。國內增長空間受限，東南亞無此監管成為優先出海目標。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>VNG 應把握本土化窗口期，在競品大規模進入前鞏固越南核心用戶群，尤其在年輕用戶（18-25 歲）市場建立黏性。</div>
+    </div>
+
+    <div class="card alert-card medium">
+      <div class="card-title">東南亞 Q1 手游：MLBB（沐瞳/字節）稱霸，短劇應用全面爆發
+        <span class="cat-tag">市場 / 全球化</span><span class="threat-badge threat-high">🔴 高</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-05-12</span><span>🏢 沐瞳/字節跳動</span><span>來源：Google</span></div>
+      <div class="card-body">Q1 東南亞手游雙榜第一為《決勝巔峰》（MLBB），霸榜地位穩固。短劇應用下載量全面爆發，東南亞成全球最大短劇下載市場，輕量化娛樂搶占重度手遊時間。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>MOBA 賽道正面競爭難度極高。短劇爆發提示 VNG 可評估切入互動影視/短劇賽道，與越南本土娛樂生態結合。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">騰訊《王者榮耀世界》4 月上線，PC 表現優於手機端
+        <span class="cat-tag">大廠動向</span><span class="threat-badge threat-medium">🟡 中</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-04-17</span><span>🏢 騰訊</span><span>來源：Google / 巴哈姆特</span></div>
+      <div class="card-body">天美旗艦開放世界遊戲，預約超 3000 萬，PC 首日排隊峰值 10 萬登頂 WeGame 榜，但移動端首日僅第 47 名且持續下滑至 61 名，表現兩極。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>重度 IP 開放世界在手機端吸引力有限，VNG 代理騰訊產品時需評估手游版東南亞接受度，別因 IP 知名度高估轉化率。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2026 ChinaJoy 7/31 登場，主題「與 AI 同遊」首設前沿科技展區
+        <span class="cat-tag">市場</span><span class="threat-badge threat-medium">🟡 中</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-25</span><span>🏢 產業整體</span><span>來源：GameRes</span></div>
+      <div class="card-body">ChinaJoy 2026 主題「與 AI 同遊」，7/31–8/3 上海舉辦，近 900 家企業、逾 1000 款遊戲參展，首設 Vision Future 前沿科技展區含 AI NPC 互動敘事體驗場。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>AI NPC 從概念走向實體展示，VNG 應提前研究越南文 / 泰文 AI NPC 應用可行性，搶占在地 AI 化先機。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">庫洛《鳴潮》3.4 版×《賽博朋克：邊緣行者》聯動，露西加入限定卡池
+        <span class="cat-tag">大廠動向</span><span class="threat-badge threat-medium">🟡 中</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-08 上線</span><span>🏢 庫洛遊戲</span><span>來源：Google / 巴哈姆特</span></div>
+      <div class="card-body">《鳴潮》3.4 版本「未選擇的夢」同步推出與《賽博朋克：邊緣行者》IP 聯動，露西五星限定角色，蕾貝卡免費領取，3.5 前瞻 6/26 直播。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>庫洛透過西方 IP 聯動深化歐美玩家認知，跨 IP 聯動模式可有效提升非中文玩家留存，VNG 代理或開發 ACG 類手遊時可參考此策略。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">騰訊 2026 年重點新品儲備 28 款，二次元投資策略出現收縮調整
+        <span class="cat-tag">大廠動向</span><span class="threat-badge threat-medium">🟡 中</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-01-09</span><span>🏢 騰訊</span><span>來源：Google</span></div>
+      <div class="card-body">騰訊 2026 年儲備 28 款重點新品（自研 + 代理），涵蓋《王者榮耀世界》《雪中悍刀行》《穿越火線：虹》等；同時退出《白荊回廊》股東行列，二次元投資佈局趨向收縮。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>騰訊收縮部分二次元投資、強化大 IP 端遊佈局，策略趨向「大爆款」模式。VNG 代理騰訊產品應優先關注核心自研 IP，降低投資風險。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">中國 AI 技術滲透率達 20% 新作，生成式 AI 正從輔助工具升格為核心競爭力
+        <span class="cat-tag">技術</span><span class="threat-badge threat-high">🔴 高</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-06</span><span>🏢 產業整體</span><span>來源：Google / TapTap</span></div>
+      <div class="card-body">2026 年約 20% 中國新上市遊戲導入生成式 AI（AI NPC 對話、動態劇情、AI 美術輔助），AI 生成內容（AIGC）正升格為核心競爭力，一年內滲透率很可能倍增。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>VNG 若未啟動 AI 輔助開發流程，開發成本與品質差距將快速拉大。優先在美術生成與越南文本地化兩個場景切入。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">5 月版號共發放 86 款國產遊戲，騰訊網易均在列；6 月版號尚未公布
+        <span class="cat-tag">版號</span><span class="threat-badge threat-medium">🟡 中</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-05 末</span><span>🏢 産業整體</span><span>來源：Google</span></div>
+      <div class="card-body">2026 年 5 月共發放 86 款國產遊戲版號，版號發放已回歸常態化月度節奏。6 月版號名單截至 6/29 尚未公布，預計下旬公告。2025 年全年版號 1771 款創歷史新高。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>版號常態化代表中國遊戲供給端壓力緩解，更多產品將陸續推進出海。VNG 應密切追蹤 6 月版號中的出海型手遊，提前預警競品進入東南亞的時間窗口。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">米哈遊吉祥物邦布 IP 化策略大成功，周邊商品化成品牌樣板
+        <span class="cat-tag">技術 / 品牌</span><span class="threat-badge threat-low">🟢 低</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-23</span><span>🏢 米哈遊</span><span>來源：GameRes</span></div>
+      <div class="card-body">GameRes 分析米哈遊透過《絕區零》吉祥物「邦布」的 C 位策略，成功打造強 IP 認同感並推動社交裂變，邦布已從遊戲道具進化為品牌符號，實體周邊聯名商品持續產出。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>吉祥物 IP 化策略有巨大商品潛力，VNG 在越南本土遊戲開發上可考慮設計在地化吉祥物角色，強化情感連結並開拓周邊商品收入。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">《盛世天下·女帝篇》6/9 全球上線，登頂中港台韓星 6 地付費榜
+        <span class="cat-tag">市場</span><span class="threat-badge threat-low">🟢 低</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-15</span><span>🏢 獨立廠商</span><span>來源：Google / GameRes</span></div>
+      <div class="card-body">互動影視遊戲《盛世天下·女帝篇》定價 59 元，PC + WeGame + iOS + Android 全球同步上線，上線後迅速登頂中國大陸、港澳台、韓國、新加坡等 6 地付費榜首。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>互動影視×遊戲在亞洲多地付費榜爆發，東南亞華語圈（星/馬）接受度高。VNG 可評估越南文版本互動影視遊戲的開發潛力，搶佔越南市場空白。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">台灣 6 月遊戲市場：《冒險家艾略特千年奇譚》奪冠，Steam 夏季特賣開跑
+        <span class="cat-tag">市場</span><span class="threat-badge threat-low">🟢 低</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-21</span><span>🏢 史克威爾艾尼克斯</span><span>來源：Google</span></div>
+      <div class="card-body">台灣 6 月 15-21 銷售榜由 HD 2D 風格新 IP《冒險家艾略特千年奇譚》奪冠。Steam 夏季特賣 6/26 開跑，《死亡擱淺 2》《劍星》等大作史低特價；GTA 6 預計 11/19 發售。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>台灣玩家對日系復古風格接受度高，越南市場可能類似。GTA 6 的 11 月發售將大量吸引注意力，同期發布應避開。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">網易《永劫無間》五週年「水下發布會」創意行銷，公布新賽季及電競計畫
+        <span class="cat-tag">大廠動向</span><span class="threat-badge threat-low">🟢 低</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-27</span><span>🏢 網易</span><span>來源：GameRes</span></div>
+      <div class="card-body">《永劫無間》五週年水下發布會，公布新賽季內容、多個 IP 聯動計畫及周年電競賽事安排，6/5 已完成更新引入新英雄並優化戰鬥系統。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>創意行銷活動（水下發布會）有效保持話題熱度，VNG 越南在地運營可借鑑此類創意活動設計，以差異化方式吸引玩家注意。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">台灣暑假旺季展望：手遊消費衝升，遊戲概念股（智冠/橘子/網銀）受矚目
+        <span class="cat-tag">市場</span><span class="threat-badge threat-low">🟢 低</span>
+      </div>
+      <div class="card-meta"><span>📅 2026-06</span><span>🏢 台灣業者</span><span>來源：Google</span></div>
+      <div class="card-body">2026 年台灣暑假為遊戲傳統旺季，手遊消費衝升，智冠、橘子、網銀三大台灣遊戲概念股受投資人關注。行動裝置使用率持續成長，互動體驗成競爭關鍵。</div>
+      <div class="pm-box"><span class="pm-label">💡 PM 觀點：</span>台灣暑假與越南暑假時間相近（6-8 月），VNG 旗下產品的越南暑假推廣節奏可對標台灣市場，加強暑期限定活動設計。</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="max-width:1400px;margin:40px auto 20px;padding:16px;text-align:center;font-size:11px;color:var(--text2);border-top:1px solid var(--border);">
+  VNG 遊戲產業趨勢情報看板 ● 2026-06-29 ● 資料來源：TapTap / 巴哈姆特 GNN / 九遊 / 17173 / GameRes BBS / Google
+  <br><a href="../../index.html" style="color:var(--accent);margin-top:6px;display:inline-block;">← 返回情報中心首頁</a>
+</footer>
+
+<script>
+function filterSec(key) {
+  const sections = document.querySelectorAll('.section[data-sec]');
+  const chips = document.querySelectorAll('#chipNav .chip');
+  chips.forEach(c => c.classList.remove('active'));
+  const clicked = [...chips].find(c => c.getAttribute('onclick') && c.getAttribute('onclick').includes("'" + key + "'"));
+  if (clicked) clicked.classList.add('active');
+  if (key === 'all') {
+    sections.forEach(s => s.classList.remove('hidden'));
+  } else {
+    sections.forEach(s => {
+      if (s.dataset.sec === key) {
+        s.classList.remove('hidden');
+        setTimeout(() => s.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+      } else {
+        s.classList.add('hidden');
+      }
+    });
+  }
+}
+</script>
+</body>
+</html>
